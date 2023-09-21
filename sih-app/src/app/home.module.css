@@ -32,3 +32,12 @@
   transform: scale(1.5);
 
 }
+.chatbotimageparent{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
