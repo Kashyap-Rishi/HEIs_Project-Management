@@ -5,6 +5,11 @@ import Image from 'next/image'
 const Home=()=> {
   return (
     <div className={styles.grandparent}>
+        <div className={styles.chatbotimageparent}>
+        
+        <img src="images/chatbot.png" className="scale-100 hover:scale-110 ease-in duration-200 cursor-pointer"></img>
+        </div>
+
         <form className="flex justify-center gap-3 align-middle">
             <input className={styles.search_bar} placeholder="Search Your Project"></input>
             <img className={styles.searchimg}src="images/search.png" width="40px" height="10px"></img>
