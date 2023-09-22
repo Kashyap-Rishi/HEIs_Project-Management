@@ -28,7 +28,7 @@ const ProjectCard  =(props:props)=>{
             </div>
             <div id={styles.datelikesbookmarks} className="flex gap-5">
             <div className={styles.date}>
-                published on {props.date}
+                Published on {props.date}
             </div>
             <div className={styles.likes}>
                 <div className="font-bold">{props.likes} Likes</div>
