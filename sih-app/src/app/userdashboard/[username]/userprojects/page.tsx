@@ -3,7 +3,7 @@ import Link from 'next/link';
 import './userproj.css'
 import Image from 'next/image';
 
-import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
+import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
 const UserProjects = () => {
   return (
     <div className="main-user">
