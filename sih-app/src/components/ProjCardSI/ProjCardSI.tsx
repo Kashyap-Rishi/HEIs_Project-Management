@@ -11,14 +11,14 @@ interface props{
     date:String,
     likes:String,
     bookmarks:String,
-    citations:String
-    statusproject:String
+    citations:String,
+    statusproject:String,
     statusBackgroundColor:string
 }
 
 const ProjCardSI = (props:props) => {
     const statusStyle = {
-        backgroundColor: props.statusBackgroundColor || 'transparent', // Default to transparent if not provided
+        backgroundColor: props.statusBackgroundColor || 'transparent', 
       };
     
   return (
