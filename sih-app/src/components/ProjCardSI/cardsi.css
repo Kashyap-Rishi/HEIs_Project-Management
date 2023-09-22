@@ -1,0 +1,47 @@
+*{
+    margin:0;
+}
+
+.projparent2{
+    width: 80%;
+    background-color: #b8b8bd;
+    margin: 0 auto;
+    padding: 1.5em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+.projparent2 h2{
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.datelikesbookmarks2{
+    display: flex;
+    padding-top:10px;
+    gap:1em;
+}
+.links2{
+    display:flex;
+    gap:1em;
+    text-decoration: underline;
+    padding-bottom: 15px;
+}
+.likes2{
+    font-weight: 500;
+}
+.citations2{
+    font-weight: 500;
+}
+
+.poj-head{
+display:flex;
+justify-content: space-between;
+}
+.poj-head .status{
+    font-size: 0.9rem;
+    margin-right: 20px;
+    margin-top: 8px;
+    background-color: rgb(121, 240, 121);
+    padding: 5px 10px;
+    border-radius:20px ;
+    }
