@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link';
 import './likeproj.css'
 import Image from 'next/image';
+import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
 
-import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
 const LikedProjects = () => {
   return (
     <div className="main-user">

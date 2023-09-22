@@ -3,7 +3,7 @@ import Link from 'next/link';
 import './bookproj.css'
 import Image from 'next/image';
 
-import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
+import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
 const BookmarkProjects = () => {
   return (
     <div className="main-user">
