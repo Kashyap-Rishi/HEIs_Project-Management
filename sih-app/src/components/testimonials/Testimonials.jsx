@@ -18,7 +18,6 @@ SwiperCore.use([Pagination]);
 
 const Testimonials = () => {
 
-    
     let {scrollYProgress} = useScroll();
     const [number, setNumber] = useState(1);
     const isMobile = useMediaQuery("(max-width: 767px)");
@@ -111,6 +110,8 @@ const Testimonials = () => {
     onClick={() => setNumber(prevNumber => Math.min(prevNumber , 4))}
   ></img>
 </div>
+
+
 
       </div>
   )
