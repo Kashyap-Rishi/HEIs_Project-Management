@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import React, { useState } from 'react';
-import { useMediaQuery } from "@material-ui/core";
+
 import SwiperCore from 'swiper/core';
 
 // Import Swiper styles
@@ -20,14 +20,13 @@ const Testimonials = () => {
 
     let {scrollYProgress} = useScroll();
     const [number, setNumber] = useState(1);
-    const isMobile = useMediaQuery("(max-width: 767px)");
-    const isTablet = useMediaQuery("(max-width: 1024px)");
+ 
     const handleSlideChange = (swiper) => {
         const activeIndex = swiper.activeIndex + 1; // Swiper indexes start from 0
         setNumber(activeIndex);
       };
   
-    const shouldDisplayPagination = isTablet;
+    
   return (
     <div className="fd_section">
 <div className="rv-head"><h3>Reviews</h3></div>
@@ -39,11 +38,11 @@ const Testimonials = () => {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
 
         speed={1500}
-        slidesPerView={isMobile ? 1 : (isTablet ? 2 : 3)}
+        slidesPerView={3}
 
         onSlideChange={handleSlideChange} 
         onSwiper={(swiper) => console.log(swiper)}
-        pagination={shouldDisplayPagination ? { clickable: true } : false}
+      
         navigation={ { prevEl: ".arrow3",
               nextEl: ".arrow4",
             }}
@@ -90,7 +89,7 @@ const Testimonials = () => {
         
    
       </Swiper>
-      {shouldDisplayPagination && <div className="swiper-pagination"></div>}
+    
     </div>
 
     <div className="arrows_fd">
