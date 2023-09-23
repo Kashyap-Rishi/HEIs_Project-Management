@@ -54,37 +54,37 @@ const Testimonials = () => {
              <SwiperSlide ><div className="imageparent1"><motion.div  className="sliderimages" >
 
         <div className="fd_desc"><p>Urban design draws together the many strands of place-making, environmental stewardship, social equity and economic viability into the creation of places .</p></div>
-            <div className="fd_para"><h3>Samantha John, ceo</h3></div>
+            <div className="fd_para"><h3>Samantha John, 3 ★</h3></div>
         </motion.div></div></SwiperSlide>
         
         
         <SwiperSlide><div className="imageparent1"><motion.div  >
             <div className="fd_desc"><p>Through a unique combination of engineer, construction and design disciplines and expertise, Concor delivers world class infrastructure .</p></div>
-            <div className="fd_para"><h3>Jose Sanchez, liquid</h3></div>
+            <div className="fd_para"><h3>Jose Sanchez, 4 ★</h3></div>
         </motion.div></div></SwiperSlide>
 
   
         <SwiperSlide><div className="imageparent1"><motion.div  className="sliderimages" >
         <div className="fd_desc"><p>Our process applies techniques from a variety of disciplines, values distinction in detail and gives careful. Since the 1980s, as the complexity of buildings began to increase.</p></div>
-            <div className="fd_para"><h3>Daniel mark, Envato</h3></div>
+            <div className="fd_para"><h3>Daniel mark, 4 ★</h3></div>
         </motion.div></div></SwiperSlide>
         
 
         <SwiperSlide><div className="imageparent1"><motion.div  className="sliderimages" >
         <div className="fd_desc"><p>Urban design draws together the many strands of place-making, environmental stewardship, social equity and economic viability into the creation of places with distinct beaut.</p></div>
-            <div className="fd_para"><h3>Samantha John, ceo</h3></div>
+            <div className="fd_para"><h3>Samantha John, 3 ★</h3></div>
         </motion.div></div></SwiperSlide>
         
         
         <SwiperSlide className="dissp_fd"><div className="imageparent1"><motion.div  >
             <div className="fd_desc"><p>Through a unique combination of engineer, construction and design disciplines and expertise, Concor delivers world class infrastructure solutions and more.</p></div>
-            <div className="fd_para"><h3>Jose Sanchez, liquid</h3></div>
+            <div className="fd_para"><h3>Jose Sanchez, 5 ★</h3></div>
         </motion.div></div></SwiperSlide>
 
   
         <SwiperSlide className="dissp_fd"><div className="imageparent1"><motion.div  className="sliderimages" >
         <div className="fd_desc"><p>Our process applies techniques from a variety of disciplines, values distinction in detail and gives careful. Since the 1980s, as the complexity of buildings began to increase.</p></div>
-            <div className="fd_para"><h3>Daniel mark, Envato</h3></div>
+            <div className="fd_para"><h3>Daniel mark, 3 ★</h3></div>
         </motion.div></div></SwiperSlide>
         
    

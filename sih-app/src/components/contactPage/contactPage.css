@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500&display=swap');
 .cnt_form{
-    height:390px;
+    height:410px;
     width:97%;
     background-color: black;
     padding:5% 2% 2%;
@@ -43,10 +43,15 @@
     border: 0.5px solid gray;
     padding:15px 12px;
 }
+.subdts3{
+    width:100%;
+    border: 0.5px solid gray;
+    padding:15px 12px;
+}
 .subdivpara p{
     font-size: 0.65rem;
     letter-spacing: 0.05rem;
-    color: #4B4B4C;
+    color: #7d7d84;
     
 }
 .subdiv_input input,input::placeholder {

@@ -4,6 +4,9 @@ import Testimonials from '../../../components/testimonials/Testimonials'
 import './singleproj.css'
 import { useState } from 'react';
 import ContactPage from '../../../components/contactPage/ContactPage';
+import CodeBox from '../../../components/codeBox/CodeBox';
+import Collaborate from '@/components/collaborate/Collaborate';
+import Collab from '@/components/collab/Collab';
 const ProjectName = () => {
     const[open, setOpen]=useState(false);
 
@@ -42,11 +45,13 @@ const ProjectName = () => {
 
                         </div>
                     </div>
+                    <CodeBox/>
+                    <Collaborate/>
                     <Testimonials/>
                     <a onClick={() => openDialog()} className='cont_btn'> Submit a review</a>
         <ContactPage open={open} setOpen={setOpen}/>
-                    
-    
+                 <Collab/>  
+              
         </div>
 
     </div>
