@@ -3,8 +3,31 @@ import Link from 'next/link';
 import './instunvf.css'
 import Image from 'next/image';
 
+
+import getInstitute from "../../../lib/getInstitute"
+
+
+type Institute={
+  username:string;
+  email:string;
+  institutename:String;
+}
+
+type Params ={
+   params:{
+    username:string
+   }
+}
+
+
+
+
+
+
 import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
-const InstituteDashboardUnvf = () => {
+export default async function InstituteDashboardUnvf({params:{username}}:Params){
+    try{
+        const userData: Institute = await getInstitute(username);
   return (
     <div className="main-inst">
         <div className="inst-title">
@@ -18,7 +41,7 @@ const InstituteDashboardUnvf = () => {
             </div>
            
             <div className="inst-name">
-                <div className="inst-foll">Indian Institute of Information Technology Nagpur</div>
+                <div className="inst-foll">{userData.institutename}</div>
                 <div className="inst-foll2">
                     <div className="sub-fl"><span>34</span>Followers</div>
                     <div className="sub-fl"><span>10</span>Followings</div>
@@ -50,6 +73,9 @@ const InstituteDashboardUnvf = () => {
     </div>
     </div>
   )
+  }catch(error){
+    console.error(error);
+    console.error("Error loading user data:", error);
+    return <div>Error loading user data</div>;
+  }
 }
-
-export default InstituteDashboardUnvf
