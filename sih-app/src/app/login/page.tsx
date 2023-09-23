@@ -1,5 +1,7 @@
 import styles from "./login.module.css"
 import "./login.css"
+import Link from "next/link"
+
 const Login = () =>{
     return(
         <div className={styles.logingrandparent}>
@@ -19,7 +21,7 @@ const Login = () =>{
                        </div>
 
                     </form>
-                    <div className={styles.donthaveacc}>Dont have a account? <p className={styles.createacc}>create an account.</p></div>
+                    <div className={styles.donthaveacc}>Dont have a account? <p className={styles.createacc}><Link href="/signup">create an account.</Link></p></div>
                 </div>
             </div>
         </div>

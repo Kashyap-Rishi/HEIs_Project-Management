@@ -1,0 +1,24 @@
+.multiprojgrandparent{
+    padding-top: 5em;
+    margin-bottom: 2em;
+}
+.multi{
+    width: 84%;
+    margin: 0 auto;
+}
+.multihead{
+    font-size: 30px;
+    font-weight: 500;
+}
+.universitiesandprojects{
+   flex-wrap: wrap;
+    
+    display: flex;
+    gap: 0em 4em;
+    
+}
+.multiprojsubhead{
+    margin-top: 5px;
+    font-size: 15px;
+    color: lightslategrey;
+}
