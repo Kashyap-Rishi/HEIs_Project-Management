@@ -9,3 +9,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Userrandom {
+   id        Int      @id @default(autoincrement())
+   email     String   @unique
+   username  String   @unique
+   password  String
+   instututename  String
+   degree    String
+   branch    String
+   startyear String
+   endyear   String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+} 
+
+model Instituterandom {
+   id        Int      @id @default(autoincrement())
+   email     String   @unique
+   username  String   @unique
+   password  String
+   institutename  String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+} 
+
+

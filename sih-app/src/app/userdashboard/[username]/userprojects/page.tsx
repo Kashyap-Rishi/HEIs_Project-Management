@@ -4,8 +4,27 @@ import './userproj.css'
 import Image from 'next/image';
 
 import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
-const UserProjects = () => {
+
+
+import getUser from "../../../lib/getUser"
+
+
+type User={
+  username:string;
+  email:string;
+}
+
+type Params ={
+   params:{
+    username:string
+   }
+}
+
+export default async function UserProjects({params:{username}}:Params){
+    try{
+        const userData: User = await getUser(username);
   return (
+   
     <div className="main-user">
         <div className="inst-title">
            <div className="overview"><span><Link className="verif" href="/userdashboard/kashyap/userprojects">Projects</Link></span></div>
@@ -19,7 +38,7 @@ const UserProjects = () => {
             </div>
            
             <div className="user-name">
-                <div className="user-foll">Dr. John Doe</div>
+                <div className="user-foll">{userData.username}</div>
                 <div className="user-foll2">
                     <div className="deg1">B.Tech CSE 2021-2025</div>
                     <div className="deg2">IIIT Nagpur</div>
@@ -36,7 +55,7 @@ const UserProjects = () => {
     
         <div className="projs-sec-user">
         <div className="user-publish">
-            <div className="user-hd-publish"><h2>Research Papers and Projects</h2></div>
+            <div className="user-hd-publish"><h2>Research Papers and Projects</h2><a>Add+</a></div>
 
         </div>
             <div className="proj-sub-user">
@@ -59,6 +78,11 @@ const UserProjects = () => {
     </div>
     </div>
   )
+    }catch(error){
+    console.error(error);
+    console.error("Error loading user data:", error);
+    return <div>Error loading user data</div>;
+  }
+  
 }
 
-export default UserProjects
