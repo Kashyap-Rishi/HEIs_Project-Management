@@ -1,0 +1,28 @@
+.projectSetparent{
+    padding-top: 5em;
+    width: 84%;
+    margin: 0 auto;
+    margin-bottom: 5em;
+}
+.ProjectSetHead{
+    font-size: 30px;
+    font-weight: 500;
+}
+.ProjectSetSubhead{
+    margin-top: 1em;
+}
+.projectSethr{
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    height: 1px;
+    opacity: 0.3;
+    background-color: lightslategray;
+}
+.ProjectSetcardset{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    margin: 0;
+    
+}

@@ -19,11 +19,11 @@ const Navbar = () => {
     <ul className="menu" style={{marginRight:'75px'}}>
     <li >
     <Link  href='/' className='nav-links'>HOME</Link>
-    <Link href='/studio' className='nav-links'>PROJECTS</Link>
+    <Link href='/multipleproj' className='nav-links'>PROJECTS</Link>
     <Link href='/services' className='nav-links'>RESEARCH PAPERS</Link>
     <Link href='/multi' className='nav-links'>FAQs</Link>
     <Link href='/contact' className='nav-links'>CONTACT US</Link>
-    <Link href='/contact' className='nav-links2'>LOGIN/SIGNUP</Link>
+    <a href='/login' className='nav-links2'>LOGIN/SIGNUP</a>
     </li>
    
       

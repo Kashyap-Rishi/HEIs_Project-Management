@@ -1,0 +1,27 @@
+.Universitygrandparent{
+    margin-top: 3em;
+    padding-bottom: 2em;
+}
+.universityparent{
+    border: 1px solid #e2e2e2;
+    min-height:100px ;
+    min-width: 300px;
+    padding: 1em;
+    border-radius: 10px;
+}
+.UniversityHead{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    
+}
+.course1{
+    
+}
+.CourseSet Link{
+    text-decoration: none;
+}
+.Links{
+    text-decoration: underline;
+    color: black;
+}
