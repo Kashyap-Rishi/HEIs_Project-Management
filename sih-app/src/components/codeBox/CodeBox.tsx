@@ -45,10 +45,10 @@ const CodeBox = () => {
             
             <div className="para-c-head"><p>Project on Recent advances on large language models</p></div>
             <div className="ct-c"><div className="icons-c"><AiOutlineLink/></div><div className="icons-desc">sih-temp-nu.vercel.app</div></div>
-            <div className="dw-c"><div className="icons-c"><CiViewList/></div><div className="icons-desc">Citations</div></div>
-            <div className="lk-c"><div className="icons-c"><AiFillLike/></div><div className="icons-desc">Likes</div></div>
-            <div className="bk-c"><div className="icons-c"><BsBookmarkFill/></div><div className="icons-desc">Bookmarks</div></div>
-            <div className="rv-c"><div className="icons-c"><GoCodeReview /></div><div className="icons-desc">Reviews</div></div>
+            <div className="dw-c"><div className="icons-c"><CiViewList/></div><div className="icons-desc">Citations 190</div></div>
+            <div className="lk-c"><div className="icons-c"><AiFillLike/></div><div className="icons-desc">Likes 30</div></div>
+            <div className="bk-c"><div className="icons-c"><BsBookmarkFill/></div><div className="icons-desc">Bookmarks 14</div></div>
+            <div className="rv-c"><div className="icons-c"><GoCodeReview /></div><div className="icons-desc">Reviews 10</div></div>
         </div>
         <hr className="code-set-hr"/>
         <div className="about-c-head"><h3>Languages</h3></div>
