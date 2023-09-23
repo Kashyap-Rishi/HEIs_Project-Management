@@ -36,9 +36,26 @@ const ContactPage = ({open,setOpen}) => {
       
 
 </div>
+
+<div className="dts">
+   
+      <div className="subdts3">
+     <div className="subdivpara">
+    <p>Report Plagiarism</p>
+     </div>
+     <div className="subdiv_input">
+     <input type="text" placeholder="Tell us where have you seen this project before?" name="email" size="60" id="cont" required/><br/>
+      </div>
+      </div>
+      
+
+</div>
  
+
+
+
 <div className="desc_text">
-<textarea  placeholder='Tell us about your review' rows="7" cols="70"></textarea>
+<textarea  placeholder='Tell us about your review' rows="5" cols="70"></textarea>
 </div>
 
 

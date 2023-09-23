@@ -1,0 +1,94 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500&display=swap');
+
+.parentcode{
+    display:flex;
+    font-family: 'Poppins', sans-serif ;
+}
+.main-c-div{
+    width:75%;
+}
+.sub-c-div{
+    width:25%;
+}
+.c-head h2{
+    
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+.code-set-hr{
+    margin:1rem 0 ;
+    width:95%;
+    opacity:0.2;
+    
+}
+.c-desc{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+.c-desc a{
+    padding: 7px 15px;
+    border-radius: 5px;
+    background-color: rgb(49, 50, 50);
+    color: white;
+}
+.d-desc{
+    font-size: 15px;
+    margin-bottom: 50px;
+    width:90%;
+}
+.c-divider{
+    opacity:0.2;
+    height:600px;
+
+}
+
+
+
+.sub-c-div{
+  padding-left: 2%;
+}
+.about-c-head h3{
+  
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+.para-c-head p{
+    font-size: 15px;
+    margin-bottom: 10px;
+    
+}
+.ct-c{
+    display: flex;
+    margin-bottom: 5px;
+
+}
+.dw-c{
+    display: flex;
+    margin-bottom: 5px;
+}
+.lk-c{
+    display: flex;
+    margin-bottom: 5px;
+}
+.bk-c{
+    display: flex;
+    margin-bottom: 5px;
+}
+.rv-c{
+    display: flex;
+}
+.icons-c{
+    font-size: 20px;
+    
+}
+.icons-desc{
+   padding-top: 3px;
+    font-size: 14px;
+    padding-left: 10px;
+
+}
