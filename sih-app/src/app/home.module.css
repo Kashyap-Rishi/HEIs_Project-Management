@@ -6,25 +6,29 @@
     border-radius: 30px;
     height: 4em;
     width: 75%;
-    border:2px solid black;
+    border:1px solid black;
     margin-bottom: 2em;
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }
 .searchimg{
     width: 40px;
     height: 40px;
     margin-top: 0.7em;
+   
 }
 .filters_parent{
     width: 80%;
     margin: 0 auto;
-    background-color: #b8b8bd;
+    background-color: #CAEDFF;
     display: flex;
     flex-direction: column;
     padding: 2em;
     margin-bottom: 2em;
     border-radius: 10px;
     margin-bottom: 5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .radio{
     -ms-transform: scale(1.5); /* IE 9 */
@@ -40,4 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.filters_parent input{
+    border: 1px solid #b6b5b5;
 }
