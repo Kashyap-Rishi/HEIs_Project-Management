@@ -7,22 +7,34 @@ import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
 
 
 import getUser from "../../../lib/getUser"
+import getProject from '../../../lib/getProject';
 
 
 type User={
   username:string;
   email:string;
+  degree:string;
+}
+type Projects={
+  projectName: string;
+  description: string;
+  studentName: string;
+  status:string;
 }
 
 type Params ={
    params:{
-    username:string
+    username:string,
+    
    }
 }
 
 export default async function UserProjects({params:{username}}:Params){
     try{
+       
+        const projectData: Projects[]= await getProject(username);
         const userData: User = await getUser(username);
+
   return (
    
     <div className="main-user">
@@ -55,25 +67,17 @@ export default async function UserProjects({params:{username}}:Params){
     
         <div className="projs-sec-user">
         <div className="user-publish">
-            <div className="user-hd-publish"><h2>Research Papers and Projects</h2><a>Add+</a></div>
+            <div className="user-hd-publish"><h2>Research Papers and Projects</h2><Link className="main-up" href="/addProjects">Add+</Link></div>
 
         </div>
-            <div className="proj-sub-user">
-                    <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardSI>
-            </div>
-            <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Unverified" statusBackgroundColor="rgb(238, 238, 119)"></ProjCardSI>
-                </div>
-                <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Rejected" statusBackgroundColor="rgb(244, 120, 120)"></ProjCardSI>
-                </div>
-                <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardSI>
-            </div>
+        {projectData.map((category) => (
+                 <div className="proj-sub-user">
+                 <ProjCardSI name={category.projectName}description={category.description}
+          link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject={category.status} statusBackgroundColor="rgb(238, 238, 119"></ProjCardSI>
+         </div>
+      ))}
+        
+
     </div>
     </div>
     </div>

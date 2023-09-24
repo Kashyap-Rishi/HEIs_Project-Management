@@ -39,7 +39,6 @@ export default async function InstituteDashboardUnvf({params:{username}}:Params)
             <div className="img-sec"> 
             <Image src="/images/coll-m.png" alt="" width={150} height={150} className="inst-img"/>
             </div>
-           
             <div className="inst-name">
                 <div className="inst-foll">{userData.institutename}</div>
                 <div className="inst-foll2">
