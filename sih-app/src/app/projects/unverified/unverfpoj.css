@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500&display=swap');
+
+
+
+*{
+    margin:0;
+}
+
+.main-singlepj{
+    font-family: 'Poppins',sans-serif;
+    padding-top: 59.5px;
+
+}
+.sub-mainpj{
+    padding:3% 10%;
+}
+.singlepj-head{
+margin-bottom: 1rem;
+}
+
+.singlepj-head h1{
+font-size: 1.8rem;
+font-weight: 400;
+color: #212529;
+}
+
+.author{
+    font-size: 15px;
+    color:#737373;
+    text-decoration: underline;
+    
+}
+.author2{
+    font-size: 15px;
+    color:#737373;
+    
+}
+
+.singlepj-desc p{
+    margin-bottom: 0.5em;
+}
+
+.singlepj-desc{
+    margin-bottom: 1rem;
+}
+
+.singlepj-para p{
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.6rem;
+    color: #212529;
+}
+
+.down-pj a{
+    background-color: #009fbb;
+    padding: 7px 20px;
+    border-radius: 5px;
+    letter-spacing: 0.05rem;
+    text-decoration: none;
+    color:white;
+    font-weight: 500;
+}
+.random{
+    margin-right: 20px;
+}
+.pj-div1{
+    margin-top: 35px;
+    margin-bottom: 60px;
+}
+
+.cont_btn{
+    font-size: 1rem;
+    padding:7px 15px;
+    background-color: #5b5f60;
+    outline: none ;
+    text-decoration: none;
+    color:white;
+    border-radius:5px;
+    cursor: pointer;
+}
+
+.cont_btn:hover{
+   opacity:0.9;
+    color: black;
+}
+
+.pj-infos{
+    margin-bottom: 3%;
+}
+.pb-lish{
+    padding:3%;
+}
+
+.hd-pb h3{
+    padding-top: 20px;
+font-size: 23px;
+margin-bottom: 10px;
+font-weight: 400;
+line-height: 1.2;
+}
+.code-set-hr2{
+    margin:1rem 0 ;
+    width:100%;
+    opacity:0.2;
+}
+
+.pb-btn{
+    margin:1% 0 4%;
+}
+.pb-btn button{
+  border:none;
+  padding: 7px 20px;
+  background-color: rgb(121, 240, 121);
+  border-radius: 20px;
+  color:black;
+  font-size: 0.9rem;
+  cursor:pointer;
+
+}
+.desc-pb2 label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.desc-pb2 textarea{
+    border: none;
+    background-color: #eae9e9;
+}
+.pb-btn2{
+    margin:1% 0 4%;
+}
+.pb-btn2 button{
+  border:none;
+  padding: 7px 20px;
+  background-color: rgb(247, 147, 139);
+  border-radius: 20px;
+  color:black;
+  font-size: 0.9rem;
+  cursor:pointer;
+}
+    
