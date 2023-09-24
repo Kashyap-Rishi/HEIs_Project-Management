@@ -36,3 +36,20 @@ model Instituterandom {
    updatedAt DateTime @updatedAt
 }
 
+model Project {
+  id              Int      @id @default(autoincrement())
+  projectName     String
+  description     String
+  studentName     String
+  rollNo          String
+  dateOfUploading DateTime
+  datasets        String
+  results         String
+  methods         String
+  status          String
+
+  languages       String[] 
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

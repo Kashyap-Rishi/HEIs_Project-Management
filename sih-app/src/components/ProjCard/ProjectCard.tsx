@@ -15,7 +15,7 @@ const ProjectCard  =(props:props)=>{
     return(
     <div className="ProjCardGrandparent">
         <div className={styles.projparent}>
-            <h2 className="text-xl font-extrabold mb-2">
+            <h2 className="text-xl font-semibold mb-2">
                 {props.name}
             </h2>
             <div id={styles.links} className="flex gap-3 underline mb-2">
@@ -31,10 +31,10 @@ const ProjectCard  =(props:props)=>{
                 Published on {props.date}
             </div>
             <div className={styles.likes}>
-                <div className="font-bold">{props.likes} Likes</div>
+                <div className="font-bold">❤️ {props.likes} Likes</div>
             </div>
             <div className={styles.bookmarks}>
-                {props.bookmarks} Bookmarks
+                📍 {props.bookmarks} Bookmarks
             </div>
             <div className={styles.citations}>
                 {props.citations} Citations
