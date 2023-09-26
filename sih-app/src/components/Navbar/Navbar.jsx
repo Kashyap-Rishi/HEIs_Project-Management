@@ -1,12 +1,14 @@
-import React from 'react'
+"use client";
+import React,{useState} from 'react'
 import './navbar.css'
 import Link from 'next/link';
-import Button from './Button';
+
 
 const Navbar = () => {
+
   return (
     <>
-    <header className="header">
+    <header className="header-nv">
     <div className="nav_main">
     <div className="navhead">
     <a href="" className="logo">R2P2</a>
@@ -22,8 +24,12 @@ const Navbar = () => {
     <Link href='/multipleproj' className='nav-links'>PROJECTS</Link>
     <Link href='/services' className='nav-links'>RESEARCH PAPERS</Link>
     <Link href='/multi' className='nav-links'>FAQs</Link>
-    <Link href='/contact' className='nav-links'>CONTACT US</Link>
-    <a href='/login' className='nav-links2'>LOGIN/SIGNUP</a>
+
+    <Link className="btn-lg" href="/institutelogin">LOGIN/SIGNUP</Link>
+   
+               
+                  
+
     </li>
    
       
@@ -31,6 +37,8 @@ const Navbar = () => {
     </div>
     </div>
   </header> 
+
+
   </>
   
   )

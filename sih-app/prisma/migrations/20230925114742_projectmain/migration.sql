@@ -4,7 +4,7 @@ CREATE TABLE "Userrandom" (
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "instututename" TEXT NOT NULL,
+    "institutename" TEXT NOT NULL,
     "degree" TEXT NOT NULL,
     "branch" TEXT NOT NULL,
     "startyear" TEXT NOT NULL,

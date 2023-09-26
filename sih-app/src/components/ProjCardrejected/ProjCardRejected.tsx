@@ -1,5 +1,5 @@
 import React from 'react'
-import './cardsi.css'
+import './cardrejected.css'
 import Link from 'next/link'
 
 interface props{
@@ -16,7 +16,7 @@ interface props{
     statusBackgroundColor:string
 }
 
-const ProjCardSI = (props:props) => {
+const ProjCardRejected = (props:props) => {
     const statusStyle = {
         backgroundColor: props.statusBackgroundColor || 'transparent', 
       };
@@ -61,4 +61,4 @@ const ProjCardSI = (props:props) => {
   )
 }
 
-export default ProjCardSI
+export default ProjCardRejected

@@ -1,5 +1,5 @@
 import React from 'react'
-import './cardsi.css'
+import './cardpublished.css'
 import Link from 'next/link'
 
 interface props{
@@ -16,7 +16,7 @@ interface props{
     statusBackgroundColor:string
 }
 
-const ProjCardSI = (props:props) => {
+const ProjCardPublished = (props:props) => {
     const statusStyle = {
         backgroundColor: props.statusBackgroundColor || 'transparent', 
       };
@@ -27,7 +27,7 @@ const ProjCardSI = (props:props) => {
         <div className="poj-head">
             <div>
         <h2 >
-           <Link className="inact-link" href="/projects/unverified"> {props.name}</Link>
+           <Link className="inact-link" href="/projects/verified"> {props.name}</Link>
         </h2>
         </div>
        
@@ -61,4 +61,4 @@ const ProjCardSI = (props:props) => {
   )
 }
 
-export default ProjCardSI
+export default ProjCardPublished

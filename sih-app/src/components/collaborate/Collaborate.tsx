@@ -12,7 +12,7 @@ const Collaborate = () => {
         <div className="pts-active"><span className="mt">•</span>File Sharing with Git Version Control</div>
 
      </div>
-     <div><a className='cont_bt-cb spc'>Collaborate</a><a className='cont_bt-cb'>Fund Projects</a></div>
+     <div><a href="/collaboratepage" className='cont_bt-cb spc'>Collaborate</a><a className='cont_bt-cb'>Fund Projects</a></div>
         </div>
         
   )

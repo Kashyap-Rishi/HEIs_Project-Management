@@ -22,8 +22,7 @@ const UnvfProjectName = () => {
       };
   
     const handlePublishClick = () => {
-      // Add your publish logic here (e.g., upload the file).
-      // You can use a library like axios to make an API request to your server.
+
       console.log('Publish clicked');
       console.log('Selected File:', file);
       console.log('Description:', longDescription);
@@ -65,6 +64,9 @@ const UnvfProjectName = () => {
                         </div>
                     </div>
                     <CodeBox/>
+
+     <div  className="plg-rpt"> <a href="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1636980709/catalog/1460226298045755392/xvky8hsu9zaa35dn7iez.jpg" className="random" >Plagiarism Report</a></div>
+
            <div className="pblish">
            <div className="hd-pb">
         <h3>Publish project</h3>
