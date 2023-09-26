@@ -1,7 +1,16 @@
+"use client"
 import styles from  "./collaborate.module.css"
 import "./collaborate.css"
+import { useForm, ValidationError } from '@formspree/react';
+
 
 const Collaborate = () =>{
+    const [state, handleSubmit] = useForm("xpzgygqj");
+    if (state.succeeded) {
+        return <div> <p style={{paddingTop:"6em",width:"85%",margin:"0 auto"}}>Mail Sent!</p>
+        <br></br>
+        <a href="/collaboratepage"><button>Go Back</button></a></div>;
+    }
     return(
         <div className={styles.CollaborateGrandParent}>
             <div className={styles.CollaborateParent}>
@@ -11,17 +20,17 @@ const Collaborate = () =>{
                 <div style={{display:"flex",gap:"5em", marginBottom:"2em"}}>
                 <div className={styles.rightcontactform} >
                        
-                        <form className={styles.contform}>
+                        <form className={styles.contform} action="https://formspree.io/f/xpzgygqj" onSubmit={handleSubmit} method="POST">
                             <div className={styles.set1form}>
-                                <input placeholder="Enter First Name"></input>
-                                <input placeholder="Enter Last Name"></input>
+                                <input placeholder="Enter First Name" name="First name"></input>
+                                <input placeholder="Enter Last Name" name="Last name"></input>
                             </div>
                             <div className={styles.set1form}>
-                                <input placeholder="Email" type="email"></input>
-                                <input placeholder="Phone Number" type="text"></input>
+                                <input placeholder="Email" type="email" name="Email"></input>
+                                <input placeholder="Phone Number" type="text" name="Pone Number"></input>
                             </div>
-                            <textarea cols={55} rows={8} placeholder="Message"></textarea>
-                            <button className={styles.contsubmitbut}>Send</button>
+                            <textarea cols={55} rows={8} placeholder="Message" name="Message"></textarea>
+                            <button className={styles.contsubmitbut} type="submit" disabled={state.submitting}>Send</button>
                         </form>
                         
                     </div>
