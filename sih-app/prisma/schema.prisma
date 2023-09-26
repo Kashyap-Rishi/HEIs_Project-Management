@@ -17,7 +17,7 @@ model Userrandom {
    email     String   @unique
    username  String   @unique
    password  String
-   instututename  String
+   institutename  String
    degree    String
    branch    String
    startyear String
@@ -55,7 +55,7 @@ model Project {
 
 }
 
-}
+
 
 
 

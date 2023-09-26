@@ -8,6 +8,8 @@ import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
 
 import getUser from "../../../lib/getUser"
 import getProject from '../../../lib/getProject';
+import ProjCardPublished from '@/components/ProjCardPublished/ProjCardPublished';
+import ProjCardRejected from '@/components/ProjCardrejected/ProjCardRejected';
 
 
 type User={
@@ -36,12 +38,13 @@ export default async function UserProjects({params:{username}}:Params){
         const userData: User = await getUser(username);
 
   return (
+    
    
     <div className="main-user">
         <div className="inst-title">
-           <div className="overview"><span><Link className="verif" href="/userdashboard/kashyap/userprojects">Projects</Link></span></div>
-           <div><span><Link className="unverif" href="/userdashboard/kashyap/likedprojects">Liked (10)</Link></span></div>
-           <div><span><Link className="unverif" href="/userdashboard/kashyap/bookmarkedprojects">Bookmarked (10)</Link></span></div>
+        <div className="overview"><span><Link className="verif" href={`/userdashboard/[username]/userprojects`} as={`/userdashboard/${username}/userprojects`}>Overview</Link></span></div>
+           <div><span><Link className="unverif"  href={`/userdashboard/[username]/likedprojects`} as={`/userdashboard/${username}/likedprojects`}>Liked (10)</Link></span></div>
+           <div><span><Link className="unverif"  href={`/userdashboard/[username]/bookmarkedprojects`} as={`/userdashboard/${username}/bookmarkedprojects`}>Bookmarked (10)</Link></span></div>
         </div>
 <div className="sub-user">
         <div className="user-display">
@@ -71,12 +74,20 @@ export default async function UserProjects({params:{username}}:Params){
 
         </div>
         {projectData.map((category) => (
+          
                  <div className="proj-sub-user">
                  <ProjCardSI name={category.projectName}description={category.description}
           link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject={category.status} statusBackgroundColor="rgb(238, 238, 119"></ProjCardSI>
+
          </div>
+
+
+
       ))}
-        
+                                            <ProjCardPublished name="Random" description="Good Project"
+                                    link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
+                                                     <ProjCardRejected name="Video app" description="Any data will work"
+                                    link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Rejected" statusBackgroundColor="rgb(247, 147, 139)"></ProjCardRejected>
 
     </div>
     </div>

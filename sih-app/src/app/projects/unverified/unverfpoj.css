@@ -60,6 +60,18 @@ color: #212529;
     color:white;
     font-weight: 500;
 }
+.plg-rpt a{
+    background-color: #ea5555;
+    padding: 7px 20px;
+    border-radius: 5px;
+    letter-spacing: 0.05rem;
+    text-decoration: none;
+    color:white;
+    font-weight: 500;
+}
+.plg-rpt{
+    margin-bottom: 40px;
+}
 .random{
     margin-right: 20px;
 }
@@ -138,4 +150,4 @@ line-height: 1.2;
   font-size: 0.9rem;
   cursor:pointer;
 }
-    
+

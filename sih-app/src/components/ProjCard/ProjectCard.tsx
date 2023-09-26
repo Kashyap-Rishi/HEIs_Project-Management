@@ -1,4 +1,5 @@
 import styles from "./card.module.css"
+import Link from "next/link"
 interface props{
     name:String,
     description:String,
@@ -16,7 +17,7 @@ const ProjectCard  =(props:props)=>{
     <div className="ProjCardGrandparent">
         <div className={styles.projparent}>
             <h2 className="text-xl font-semibold mb-2">
-                {props.name}
+            <Link className="inact-link" href="/projects/verified">  {props.name}</Link>
             </h2>
             <div id={styles.links} className="flex gap-3 underline mb-2">
                 <a>{props.link1}</a>

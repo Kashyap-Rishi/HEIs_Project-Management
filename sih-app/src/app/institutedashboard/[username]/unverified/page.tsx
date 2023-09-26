@@ -1,8 +1,10 @@
+
 import React from 'react'
 import Link from 'next/link';
 import './instunvf.css'
 import Image from 'next/image';
 
+import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
 
 import getInstitute from "../../../lib/getInstitute"
 
@@ -24,15 +26,14 @@ type Params ={
 
 
 
-import ProjCardSI from '@/components/ProjCardSI/ProjCardSI';
 export default async function InstituteDashboardUnvf({params:{username}}:Params){
     try{
         const userData: Institute = await getInstitute(username);
   return (
     <div className="main-inst">
         <div className="inst-title">
-        <div className="overview"><span><Link className="unverif" href="/institutedashboard/kashyap/verified">Overview</Link></span></div>
-           <div><span><Link className="verif" href="/institutedashboard/kashyap/unverified">Unverified Projects (10)</Link></span></div>
+        <div className="overview"><span><Link className="unverif" href={`/institutedashboard/[username]/verified`} as={`/institutedashboard/${username}/verified`}>Overview</Link></span></div>
+           <div><span><Link className="verif" href={`/institutedashboard/[username]/unverified`} as={`/institutedashboard/${username}/unverified`}>Unverified Projects (10)</Link></span></div>
         </div>
 
         <div className="inst-display">

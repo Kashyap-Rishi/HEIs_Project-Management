@@ -2,15 +2,30 @@ import React from 'react'
 import Link from 'next/link';
 import './bookproj.css'
 import Image from 'next/image';
+import getUser from '@/app/lib/getUser';
+import ProjCardPublished from '@/components/ProjCardPublished/ProjCardPublished';
+type Params ={
+    params:{
+     username:string,
+     
+    }
+   }
+   type User={
+    username:string;
+    email:string;
+    degree:string;
+  }
 
-import ProjCardSI from '../../../../components/ProjCardSI/ProjCardSI';
-const BookmarkProjects = () => {
+
+
+const BookmarkProjects =async ({params:{username}}:Params) => {
+    const userData: User = await getUser(username);
   return (
     <div className="main-user">
         <div className="inst-title">
-           <div className="overview"><span><Link className="unverif" href="/userdashboard/kashyap/userprojects">Projects</Link></span></div>
-           <div><span><Link className="unverif" href="/userdashboard/kashyap/likedprojects">Liked (10)</Link></span></div>
-           <div><span><Link className="verif" href="/userdashboard/kashyap/bookmarkedprojects">Bookmarked (10)</Link></span></div>
+        <div className="overview"><span><Link className="unverif" href={`/userdashboard/[username]/userprojects`} as={`/userdashboard/${username}/userprojects`}>Overview</Link></span></div>
+           <div><span><Link className="unverif"  href={`/userdashboard/[username]/likedprojects`} as={`/userdashboard/${username}/likedprojects`}>Liked (10)</Link></span></div>
+           <div><span><Link className="verif"  href={`/userdashboard/[username]/bookmarkedprojects`} as={`/userdashboard/${username}/bookmarkedprojects`}>Bookmarked (10)</Link></span></div>
         </div>
 <div className="sub-user">
         <div className="user-display">
@@ -19,7 +34,7 @@ const BookmarkProjects = () => {
             </div>
            
             <div className="user-name">
-                <div className="user-foll">Dr. John Doe</div>
+                <div className="user-foll">{userData.username}</div>
                 <div className="user-foll2">
                     <div className="deg1">B.Tech CSE 2021-2025</div>
                     <div className="deg2">IIIT Nagpur</div>
@@ -36,24 +51,24 @@ const BookmarkProjects = () => {
     
         <div className="projs-sec-user">
         <div className="user-publish">
-            <div className="user-hd-publish"><h2>Research Papers and Projects</h2></div>
+            <div className="user-hd-publish"><h2>Bookmarked Projects</h2></div>
 
         </div>
             <div className="proj-sub-user">
-                    <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardSI>
+            <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardPublished>
             </div>
-            <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardSI>
+            <div className="proj-sub">
+                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardPublished>
                 </div>
-                <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardSI>
+                <div className="proj-sub">
+                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardPublished>
                 </div>
-                <div className="proj-sub-user">
-                                <ProjCardSI name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardSI>
+                <div className="proj-sub">
+                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="" statusBackgroundColor=""></ProjCardPublished>
             </div>
     </div>
     </div>

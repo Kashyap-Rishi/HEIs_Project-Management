@@ -73,7 +73,7 @@ const Collaborate = () =>{
                         </div>
                         <div>
                           <div className={styles.realchatHead}>Lets Chat!!</div>
-                        <div className={styles.reachatsubhead}>Chat with us so that we can colllaborate.<p className={styles.clickhere}>Click Here.</p></div>  
+                        <div className={styles.reachatsubhead}>Chat with us so that we can colllaborate.<br/><a href="https://video-calling-web-app-v1.vercel.app/" className={styles.clickhere}>Click Here.</a></div>  
                         </div>
                         
                     </div>
