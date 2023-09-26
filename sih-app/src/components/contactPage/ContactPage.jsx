@@ -1,8 +1,14 @@
 import React from 'react'
 import { Dialog } from '@mui/material'
+import { useForm, ValidationError } from '@formspree/react';
+
 import './contactPage.css'
 
 const ContactPage = ({open,setOpen}) => {
+  const [state, handleSubmit] = useForm("xyyqnqwy");
+  if (state.succeeded) {
+      return <p style={{paddingTop:"6em"}}>Thanks for Reviewing!</p>;
+  }
     const handleClose=()=>{
         setOpen(false);
     }
@@ -14,7 +20,8 @@ const ContactPage = ({open,setOpen}) => {
 <h1> Leave a review</h1>
 </div>
 
-    <form class="" action="/" method="post">
+    <form class=""  onSubmit={handleSubmit} action="https://formspree.io/f/xyyqnqwy"
+  method="POST">
 
      <div className="dts">
      <div className="subdts1">
@@ -22,7 +29,7 @@ const ContactPage = ({open,setOpen}) => {
     <p>Name</p>
      </div>
      <div className="subdiv_input">
-     <input type="text" placeholder="What's your name" name="email" size="30" id="cont" required/><br/>
+     <input type="text" placeholder="What's your name" name="name" size="30" id="cont" required/><br/>
       </div>
       </div>
       <div className="subdts2">
@@ -30,7 +37,7 @@ const ContactPage = ({open,setOpen}) => {
     <p>Rating</p>
      </div>
      <div className="subdiv_input">
-     <input type="text" placeholder="Rate from 1-5" name="email" size="30" id="cont" required/><br/>
+     <input type="text" placeholder="Rate from 1-5" name="rating" size="30" id="cont" required/><br/>
       </div>
       </div>
       
@@ -44,7 +51,7 @@ const ContactPage = ({open,setOpen}) => {
     <p>Report Plagiarism</p>
      </div>
      <div className="subdiv_input">
-     <input type="text" placeholder="Tell us where have you seen this project before?" name="email" size="60" id="cont" required/><br/>
+     <input type="text" placeholder="Tell us where have you seen this project before?" name="Plaigcheck" size="60" id="cont" required/><br/>
       </div>
       </div>
       
@@ -55,13 +62,13 @@ const ContactPage = ({open,setOpen}) => {
 
 
 <div className="desc_text">
-<textarea  placeholder='Tell us about your review' rows="5" cols="70"></textarea>
+<textarea  placeholder='Tell us about your review' name="review" rows="5" cols="70"></textarea>
 </div>
 
 
 
       
-<button type="submit" class="registerbtn">Send Message</button> 
+<button type="submit" disabled={state.submitting} class="registerbtn">Send Message</button> 
 
     
 
