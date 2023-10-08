@@ -1,16 +1,34 @@
 "use client";
 import React from 'react'
-
+import getAllProject from '@/app/lib/getAllProject';
 import './unverfpoj.css'
 import { useState,ChangeEvent } from 'react';
 
-import CodeBox from '../../../components/codeBox/CodeBox';
+import CodeBox from '../../../../components/codeBox/CodeBox';
 
-const UnvfProjectName = () => {
-    const[open, setOpen]=useState(false);
+
+type Projects={
+  id:number;
+  projectName: string;
+  description: string;
+  studentName: string;
+  status:string;
+}
+
+type Params ={
+   params:{
+    id:number,
+    
+   }
+}
+
+
+
+const UnvfProjectName = async  ({params:{id}}:Params) => {
+
     const [file, setFile] = useState<File | null>(null);
     const [longDescription, setLongDescription] = useState<string>('');
-
+    const projectData: Projects= await getAllProject(id);
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
       const selectedFile = e.target.files?.[0];
@@ -28,14 +46,12 @@ const UnvfProjectName = () => {
       console.log('Description:', longDescription);
     };
 
-    const openDialog=()=>{
-      setOpen(true);
-    }
+
   return (
     <div className="main-singlepj">
         <div className="sub-mainpj">
         <div className="singlepj-head">
-<h1>Agents: An Open-source Framework</h1>
+<h1>{projectData.projectName}</h1>
         </div>
         <div className="singlepj-desc">
 <p><span className="author">Wangchunshu Zhou</span>, <span className="author">Yuchen Eleanor Jiang</span>, <span className="author">Long Li</span></p>

@@ -1,8 +1,17 @@
 import React from 'react'
 import './cardsi.css'
 import Link from 'next/link'
+import { Category } from '@mui/icons-material';
+
+
+
+
+
+
+
 
 interface props{
+    id:Number,
     name:String,
     description:String,
     link1:String,
@@ -16,10 +25,16 @@ interface props{
     statusBackgroundColor:string
 }
 
+
+
+
+
 const ProjCardSI = (props:props) => {
+    try{
     const statusStyle = {
         backgroundColor: props.statusBackgroundColor || 'transparent', 
       };
+      
     
   return (
     <div className="ProjCardGrandparent2">
@@ -27,7 +42,7 @@ const ProjCardSI = (props:props) => {
         <div className="poj-head">
             <div>
         <h2 >
-           <Link className="inact-link" href="/projects/unverified"> {props.name}</Link>
+           <Link className="inact-link" href={`/projects/[id]/unverified`} as={`/projects/${props.id}/unverified`}> {props.name}</Link>
         </h2>
         </div>
        
@@ -59,6 +74,11 @@ const ProjCardSI = (props:props) => {
     </div>
 </div>
   )
+}catch(error){
+    console.error(error);
+    console.error("Error loading user data:", error);
+    return <div>Error loading user data</div>;
+  }
 }
 
 export default ProjCardSI

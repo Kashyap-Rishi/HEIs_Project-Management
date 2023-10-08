@@ -1,10 +1,10 @@
 "use client";
 import React from 'react'
-import Testimonials from '../../../components/testimonials/Testimonials'
+import Testimonials from '../../../../components/testimonials/Testimonials'
 import './singleproj.css'
 import { useState } from 'react';
-import ContactPage from '../../../components/contactPage/ContactPage';
-import CodeBox from '../../../components/codeBox/CodeBox';
+import ContactPage from '../../../../components/contactPage/ContactPage';
+import CodeBox from '../../../../components/codeBox/CodeBox';
 import Collaborate from '@/components/collaborate/Collaborate';
 import Collab from '@/components/collab/Collab';
 const ProjectName = () => {

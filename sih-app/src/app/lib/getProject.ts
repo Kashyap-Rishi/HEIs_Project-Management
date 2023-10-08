@@ -7,7 +7,7 @@ cache:"no-store"
 
     const userProjects = await res.json(); // Parse the JSON data
    
-   console.log(userProjects);
+
 
   return userProjects;
 }
