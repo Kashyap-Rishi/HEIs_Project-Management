@@ -16,49 +16,49 @@ export const authOptions: NextAuthOptions = {
     
   },
   providers: [
-    CredentialsProvider({
-      name: "StudentCredentials", 
-      credentials: {
-        username: { label: "username", type: "username", placeholder: "student@example.com" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials2) {
-        if (!credentials2?.username || !credentials2?.password) {
-          return null;
-        }
-console.log("studentcalled");
-        try {
+//     CredentialsProvider({
+//       name: "StudentCredentials", 
+//       credentials: {
+//         username: { label: "username", type: "username", placeholder: "student@example.com" },
+//         password: { label: "Password", type: "password" }
+//       },
+//       async authorize(credentials2) {
+//         if (!credentials2?.username || !credentials2?.password) {
+//           return null;
+//         }
+// console.log("studentcalled");
+//         try {
 
-          const existingStudent = await connect.userrandom.findUnique({
-            where: { username: credentials2?.username }
-          });
+//           const existingStudent = await connect.userrandom.findUnique({
+//             where: { username: credentials2?.username }
+//           });
 
-          if (!existingStudent) {
-            console.error("Student not found");
-            return null;
-          }
+//           if (!existingStudent) {
+//             console.error("Student not found");
+//             return null;
+//           }
 
-          const passwordMatch = await compare(credentials2.password, existingStudent.password);
+//           const passwordMatch = await compare(credentials2.password, existingStudent.password);
 
-          if (!passwordMatch) {
-            console.error("Password does not match");
-            return null;
-          }
+//           if (!passwordMatch) {
+//             console.error("Password does not match");
+//             return null;
+//           }
 
-          const user = {
-            id: `${existingStudent.id}`,
-            username: existingStudent.username,
-            email: existingStudent.email,
+//           const user = {
+//             id: `${existingStudent.id}`,
+//             username: existingStudent.username,
+//             email: existingStudent.email,
 
-          };
+//           };
 
-          return user;
-        } catch (error) {
-          console.error("Error during student authorization:", error);
-          return null;
-        }
-      }
-    }),
+//           return user;
+//         } catch (error) {
+//           console.error("Error during student authorization:", error);
+//           return null;
+//         }
+//       }
+//     }),
 
 
 

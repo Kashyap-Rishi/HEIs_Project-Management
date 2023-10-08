@@ -18,6 +18,7 @@ type User={
   degree:string;
 }
 type Projects={
+  id:number;
   projectName: string;
   description: string;
   studentName: string;
@@ -76,7 +77,7 @@ export default async function UserProjects({params:{username}}:Params){
         {projectData.map((category) => (
           
                  <div className="proj-sub-user">
-                 <ProjCardSI name={category.projectName}description={category.description}
+                 <ProjCardSI id={category.id} name={category.projectName} description={category.description}
           link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject={category.status} statusBackgroundColor="rgb(238, 238, 119"></ProjCardSI>
 
          </div>
