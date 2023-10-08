@@ -47,7 +47,9 @@ export default async function InstituteDashboardUnvf({params:{username}}:Params)
 for (const projects of projectDataArray) {
   for (const project of projects) {
     const { id, projectName,description,status } = project;
+    if(status==='unverified'){
     extractedProjectData.push({ id, projectName,description,status });
+    }
   }
 }
 

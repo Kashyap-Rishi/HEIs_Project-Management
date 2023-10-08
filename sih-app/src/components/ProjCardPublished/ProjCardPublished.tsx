@@ -3,6 +3,7 @@ import './cardpublished.css'
 import Link from 'next/link'
 
 interface props{
+    id:Number,
     name:String,
     description:String,
     link1:String,
@@ -27,7 +28,7 @@ const ProjCardPublished = (props:props) => {
         <div className="poj-head">
             <div>
         <h2 >
-           <Link className="inact-link" href="/projects/verified"> {props.name}</Link>
+        <Link className="inact-link" href={`/projects/[id]/verified`} as={`/projects/${props.id}/verified`}> {props.name}</Link>
         </h2>
         </div>
        

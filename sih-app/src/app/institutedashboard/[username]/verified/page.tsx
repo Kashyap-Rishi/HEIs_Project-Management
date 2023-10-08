@@ -2,16 +2,22 @@ import React from 'react'
 import Link from 'next/link';
 import './inst.css'
 import Image from 'next/image';
+import getInstituteUsers from '@/app/lib/getInstituteUsers';
 import getInstitute from "../../../lib/getInstitute"
+import getProject from '@/app/lib/getProject';
 
 import ProjCardPublished from '@/components/ProjCardPublished/ProjCardPublished';
 
 type Institute={
   username:string;
   email:string;
-  institutename:String;
+  institutename:string;
 }
-
+type User={
+    username:string;
+    email:string;
+    
+  }
 type Params ={
    params:{
     username:string
@@ -19,7 +25,27 @@ type Params ={
 }
 
 const InstituteDashboard = async ({params:{username}}:Params) => {
-    const userData: Institute = await getInstitute(username);
+ 
+
+    const instData: Institute = await getInstitute(username);
+    const userData: User[] = await getInstituteUsers(instData.institutename);
+
+    const projectPromises = userData.map((user) => getProject(user.username));
+    const projectDataArray = await Promise.all(projectPromises);
+    const extractedProjectData: { id: number, projectName: string, description:string ,status:string}[] = [];
+
+
+for (const projects of projectDataArray) {
+  for (const project of projects) {
+    const { id, projectName,description,status } = project;
+    
+    if (status === 'published') {
+        extractedProjectData.push({ id, projectName, description, status });
+      }
+  }
+}
+
+
   return (
     <div className="main-inst">
         <div className="inst-title">
@@ -33,7 +59,7 @@ const InstituteDashboard = async ({params:{username}}:Params) => {
             </div>
            
             <div className="inst-name">
-                <div className="inst-foll">{userData.institutename}</div>
+                <div className="inst-foll">{instData.institutename}</div>
                 <div className="inst-foll2">
                     <div className="sub-fl"><span>34</span>Followers</div>
                     <div className="sub-fl"><span>10</span>Followings</div>
@@ -46,25 +72,20 @@ const InstituteDashboard = async ({params:{username}}:Params) => {
 
         </div>
         <div className="projs-sec">
-            <div className="proj-sub">
-                    <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
-            </div>
-            <div className="proj-sub">
-                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
-                </div>
-                <div className="proj-sub">
-                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
-                </div>
-                <div className="proj-sub">
-                                <ProjCardPublished name="Project: Video Calling app" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            " link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
-            </div>
+        {extractedProjectData.map((category) => (
+     <div className="proj-sub-inst">
+          <ProjCardPublished id={category.id} name={category.projectName} description={category.description}
+   link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject={category.status} statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
+
+</div>
+
+
+
+))}
     </div>
     </div>
   )
 }
+
 
 export default InstituteDashboard

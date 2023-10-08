@@ -3,13 +3,32 @@ import React from 'react'
 import Testimonials from '../../../../components/testimonials/Testimonials'
 import './singleproj.css'
 import { useState } from 'react';
+import getAllProject from '@/app/lib/getAllProject';
 import ContactPage from '../../../../components/contactPage/ContactPage';
 import CodeBox from '../../../../components/codeBox/CodeBox';
 import Collaborate from '@/components/collaborate/Collaborate';
 import Collab from '@/components/collab/Collab';
-const ProjectName = () => {
-    const[open, setOpen]=useState(false);
 
+
+type Projects={
+  id:number;
+  projectName: string;
+  description: string;
+  studentName: string;
+  status:string;
+}
+
+type Params ={
+   params:{
+    id:number,
+    
+   }
+}
+
+
+const ProjectName =async ({params:{id}}:Params) => {
+    const[open, setOpen]=useState(false);
+    const projectData: Projects= await getAllProject(id);
     const openDialog=()=>{
       setOpen(true);
     }
@@ -17,7 +36,7 @@ const ProjectName = () => {
     <div className="main-singlepj">
         <div className="sub-mainpj">
         <div className="singlepj-head">
-<h1>Agents: An Open-source Framework</h1>
+<h1>{projectData.projectName}</h1>
         </div>
         <div className="singlepj-desc">
 <p><span className="author">Wangchunshu Zhou</span>, <span className="author">Yuchen Eleanor Jiang</span>, <span className="author">Long Li</span></p>
