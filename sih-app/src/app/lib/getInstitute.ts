@@ -1,4 +1,4 @@
-export default async function getUser(username:string){
+export default async function getInstitute(username:string){
     console.log(username);
     const res= await fetch(`http://localhost:3000/api/institutedashboard/unverified/username?username=${username}`)
 

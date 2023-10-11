@@ -85,8 +85,7 @@ export default async function UserProjects({params:{username}}:Params){
 
 
       ))}
-                                            <ProjCardPublished name="Random" description="Good Project"
-                                    link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Published" statusBackgroundColor="rgb(121, 240, 121)"></ProjCardPublished>
+                                            
                                                      <ProjCardRejected name="Video app" description="Any data will work"
                                     link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Rejected" statusBackgroundColor="rgb(247, 147, 139)"></ProjCardRejected>
 
