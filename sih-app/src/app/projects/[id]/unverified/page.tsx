@@ -1,10 +1,13 @@
 "use client";
 import React from 'react'
+import prisma from '@/app/lib/connect';
 import getAllProject from '@/app/lib/getAllProject';
+import { updateProjectStatus } from '@/app/lib/getAllProject';
 import './unverfpoj.css'
 import { useState,ChangeEvent } from 'react';
 
 import CodeBox from '../../../../components/codeBox/CodeBox';
+
 
 
 type Projects={
@@ -38,13 +41,36 @@ const UnvfProjectName = async  ({params:{id}}:Params) => {
       const handleLongDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setLongDescription(e.target.value);
       };
-  
-    const handlePublishClick = () => {
-
-      console.log('Publish clicked');
-      console.log('Selected File:', file);
-      console.log('Description:', longDescription);
-    };
+      const handlePublishClick = async () => {
+      
+        try {
+          const response = await fetch(`http://localhost:3000/api/singleprojects/id?id=${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'published' }),
+          });
+      
+          if (response.ok) {
+            window.alert('Project status updated successfully');
+            console.log('Project status updated successfully');
+      
+            // Open a new window with the same URL and then close the current window
+            const newWindow = window.open(window.location.href, '_self');
+            if (newWindow) {
+              newWindow.addEventListener('load', () => {
+                window.close();
+              });
+            }
+          } else {
+            console.error('Error updating project status', response.status);
+          }
+        } catch (error) {
+          console.error('Error updating project status', error);
+        }
+      };
+      
 
 
   return (
