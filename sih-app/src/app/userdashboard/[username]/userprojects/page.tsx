@@ -74,21 +74,69 @@ export default async function UserProjects({params:{username}}:Params){
             <div className="user-hd-publish"><h2>Research Papers and Projects</h2><Link className="main-up" href="/addProjects">Add+</Link></div>
 
         </div>
-        {projectData.map((category) => (
-          
-                 <div className="proj-sub-user">
-                 <ProjCardSI id={category.id} name={category.projectName} description={category.description}
-          link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject={category.status} statusBackgroundColor="rgb(238, 238, 119"></ProjCardSI>
 
-         </div>
+        {projectData.map((category) => {
+            if (category.status === 'unverified') {
+              return (
+                <div className="proj-sub-user">
+                  <ProjCardSI
+                    id={category.id}
+                    name={category.projectName}
+                    description={category.description}
+                    link1="Mangalam"
+                    link2="Kashyap"
+                    link3="Deep"
+                    date="26/11/23"
+                    likes="1M"
+                    bookmarks="420"
+                    citations="420"
+                    statusproject={category.status}
+                    statusBackgroundColor="rgb(238, 238, 119)"
+                  ></ProjCardSI>
+                </div>
+              );
+              
+            }
+            else if (category.status === 'published') {
+              return (
+                <div className="proj-sub-user">
+                   <ProjCardPublished
+                    id={category.id}
+                    name={category.projectName}
+                    description={category.description}
+                    link1="Mangalam"
+                    link2="Kashyap"
+                    link3="Deep"
+                    date="26/11/23"
+                    likes="1M"
+                    bookmarks="420"
+                    citations="420"
+                    statusproject={category.status}
+                    statusBackgroundColor="rgb(121, 240, 121)"
+                  ></ProjCardPublished>
+                </div>
+              );
+            }
+            else if (category.status === 'rejected') {
+              return (
+                <div className="proj-sub-user">
+                  <ProjCardRejected
+                    id={category.id}
+                    name={category.projectName}
+                    description={category.description}
+                    link1="Mangalam"
+                    link2="Kashyap"
+                    link3="Deep"
+                    statusproject={category.status}
+                    statusBackgroundColor="rgb(247, 147, 139)"
+                  ></ProjCardRejected>
+                </div>
+              );
+            }
 
-
-
-      ))}
-                                            
-                                                     <ProjCardRejected name="Video app" description="Any data will work"
-                                    link1="Mangalam" link2="Kashyap" link3="Deep" date="26/11/23" likes="1M" bookmarks="420" citations="420" statusproject="Rejected" statusBackgroundColor="rgb(247, 147, 139)"></ProjCardRejected>
-
+            return null;
+          })}
+                           
     </div>
     </div>
     </div>
