@@ -9,7 +9,7 @@ import getInstituteUsers from '@/app/lib/getInstituteUsers';
 import getInstitute from "../../../lib/getInstitute"
 import getProject from '@/app/lib/getProject';
 
-import { CompressOutlined } from '@mui/icons-material';
+
 
 
 type Institute={

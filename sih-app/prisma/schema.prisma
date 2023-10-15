@@ -47,9 +47,8 @@ model Project {
   results         String
   methods         String
   status          String
-
+  rejectionSummary      String?
   languages       String[] 
-
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 

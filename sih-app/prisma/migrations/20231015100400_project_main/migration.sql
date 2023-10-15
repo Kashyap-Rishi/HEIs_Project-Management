@@ -40,6 +40,7 @@ CREATE TABLE "Project" (
     "results" TEXT NOT NULL,
     "methods" TEXT NOT NULL,
     "status" TEXT NOT NULL,
+    "rejectionSummary" TEXT NOT NULL,
     "languages" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

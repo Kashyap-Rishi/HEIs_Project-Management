@@ -1,61 +1,75 @@
 "use client";
-import React from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import prisma from '@/app/lib/connect';
 import getAllProject from '@/app/lib/getAllProject';
-import { updateProjectStatus } from '@/app/lib/getAllProject';
-import './unverfpoj.css'
-import { useState,ChangeEvent } from 'react';
-
+import './unverfpoj.css';
 import CodeBox from '../../../../components/codeBox/CodeBox';
 
-
-
-type Projects={
-  id:number;
+type Projects = {
+  id: number;
   projectName: string;
   description: string;
   studentName: string;
-  status:string;
-}
+  status: string;
+};
 
-type Params ={
-   params:{
-    id:number,
-    
-   }
-}
+type Params = {
+  params: {
+    id: number;
+  };
+};
 
+const UnvfProjectName = ({ params: { id } }: Params) => {
+  const [file, setFile] = useState<File | null>(null);
+  const [longDescription, setLongDescription] = useState<string>('');
+  const [projectData, setProjectData] = useState<Projects | null>(null);
 
+  // Function to fetch project data
+  const fetchProjectData = (id: number): Promise<Projects> => {
+    return new Promise((resolve, reject) => {
+      getAllProject(id)
+        .then((projectData) => {
+          resolve(projectData);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
 
-const UnvfProjectName = async  ({params:{id}}:Params) => {
+  useEffect(() => {
+    fetchProjectData(id)
+      .then((data) => {
+        setProjectData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching project data', error);
+      });
+  }, [id]);
 
-    const [file, setFile] = useState<File | null>(null);
-    const [longDescription, setLongDescription] = useState<string>('');
-    const projectData: Projects= await getAllProject(id);
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    setFile(selectedFile || null);
+  };
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const selectedFile = e.target.files?.[0];
-      setFile(selectedFile || null);
-    };
-    
-      const handleLongDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setLongDescription(e.target.value);
-      };
-      const handlePublishClick = async () => {
-      
-        try {
-          const response = await fetch(`http://localhost:3000/api/singleprojects/id?id=${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ status: 'published' }),
-          });
-      
+  const handleLongDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setLongDescription(e.target.value);
+  };
+
+  const handlePublishClick = () => {
+    if (projectData) {
+      fetch(`http://localhost:3000/api/singleprojects/id?id=${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: 'published' }),
+      })
+        .then((response) => {
           if (response.ok) {
             window.alert('Project status updated successfully');
             console.log('Project status updated successfully');
-      
+
             // Open a new window with the same URL and then close the current window
             const newWindow = window.open(window.location.href, '_self');
             if (newWindow) {
@@ -66,18 +80,52 @@ const UnvfProjectName = async  ({params:{id}}:Params) => {
           } else {
             console.error('Error updating project status', response.status);
           }
-        } catch (error) {
+        })
+        .catch((error) => {
           console.error('Error updating project status', error);
-        }
-      };
-      
+        });
+    }
+  };
+
+  const handlePublishClickRejected = () => {
+    if (projectData) {
+      fetch(`http://localhost:3000/api/singleprojects/id?id=${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: 'rejected', rejectionSummary: longDescription }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            window.alert('Project status updated successfully');
+            console.log('Project status updated successfully');
+
+            // Open a new window with the same URL and then close the current window
+            const newWindow = window.open(window.location.href, '_self');
+            if (newWindow) {
+              newWindow.addEventListener('load', () => {
+                window.close();
+              });
+            }
+          } else {
+            console.error('Error updating project status', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error updating project status', error);
+        });
+    }
+  };
 
 
   return (
     <div className="main-singlepj">
+         {projectData ? (
         <div className="sub-mainpj">
         <div className="singlepj-head">
-<h1>{projectData.projectName}</h1>
+        <h1>{projectData?.projectName}</h1>
+
         </div>
         <div className="singlepj-desc">
 <p><span className="author">Wangchunshu Zhou</span>, <span className="author">Yuchen Eleanor Jiang</span>, <span className="author">Long Li</span></p>
@@ -142,7 +190,7 @@ const UnvfProjectName = async  ({params:{id}}:Params) => {
         />
 
 
-        <div className="pb-btn2"> <button onClick={handlePublishClick}>Reject</button></div>
+        <div className="pb-btn2"> <button onClick={handlePublishClickRejected}>Reject</button></div>
        
       </div>
       
@@ -153,6 +201,9 @@ const UnvfProjectName = async  ({params:{id}}:Params) => {
                  
               
         </div>
+      ) : (
+        <p>Loading project data...</p>
+      )}
 
     </div>
   )

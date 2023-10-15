@@ -1,5 +1,6 @@
 import prisma from '../../../lib/connect';
 import { NextRequest, NextResponse } from "next/server"
+import { request } from 'http';
 
 export const GET = async (req: NextRequest) => {
   const { searchParams } = await new URL(req.url);
@@ -15,10 +16,9 @@ export const GET = async (req: NextRequest) => {
       );
     }
 
-    // Convert the userid to a number if needed
+   
     const id = parseInt(userid, 10);
 
-    // Check if the converted id is a valid number
     if (isNaN(id)) {
       return new NextResponse(
         JSON.stringify({ message: 'Invalid id provided', userid }),
@@ -26,7 +26,6 @@ export const GET = async (req: NextRequest) => {
       );
     }
 
-    // Fetch project data based on the id
     const projectData = await prisma.project.findUnique({
       where: {
         id: id,
@@ -34,14 +33,14 @@ export const GET = async (req: NextRequest) => {
     });
 
     if (!projectData) {
-      // Handle the case where the project does not exist
+
       return new NextResponse(
         JSON.stringify({ message: 'Project not found', id }),
         { status: 404 }
       );
     }
 
-    // Return the project data as a JSON response
+
     return new NextResponse(JSON.stringify(projectData), { status: 200 });
   } catch (error) {
     console.error(error);
@@ -73,13 +72,13 @@ export const PUT = async (req: NextRequest) => {
       );
     }
 
-    // Read the request body as a stream
+
     const body = await req.text();
 
-    // Parse the body as JSON
+
     const requestBody = JSON.parse(body);
 
-    // Ensure the request body contains the 'status' property
+    
     if (!requestBody.status) {
       return new NextResponse(
         JSON.stringify({ message: 'Missing or invalid status in the request body' }),
@@ -87,13 +86,16 @@ export const PUT = async (req: NextRequest) => {
       );
     }
 
-    // Update the project status in the database using Prisma
+
     const updatedProject = await prisma.project.update({
       where: {
         id: id,
       },
       data: {
-        status: requestBody.status, // Assuming 'status' is a field in the 'project' table
+    
+        status: requestBody.status,
+        rejectionSummary: requestBody.rejectionSummary 
+        
       },
     });
 

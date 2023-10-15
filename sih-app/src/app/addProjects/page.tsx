@@ -14,6 +14,7 @@ const AddProject = () => {
     datasets: '',
     status:'unverified',
     results: '',
+    rejectionSummary: '',
     methods: '',
     languages: '',
   });
