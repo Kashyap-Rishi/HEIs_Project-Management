@@ -51,7 +51,7 @@ const SignupFormStudent = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle signup logic here (e.g., send data to server)
+ 
 
     try{
       const response = await fetch('/api/createusers',{

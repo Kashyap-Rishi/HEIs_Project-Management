@@ -101,7 +101,7 @@ const UnvfProjectName = ({ params: { id } }: Params) => {
             window.alert('Project status updated successfully');
             console.log('Project status updated successfully');
 
-            // Open a new window with the same URL and then close the current window
+
             const newWindow = window.open(window.location.href, '_self');
             if (newWindow) {
               newWindow.addEventListener('load', () => {
