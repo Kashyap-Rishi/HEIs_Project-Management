@@ -1,2 +1,2 @@
 # SIH-temp
-Webite for college hackthon evaluation (SIH)
+Webite for managing projects uploaded by students throughout their college
