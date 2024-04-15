@@ -8,4 +8,4 @@ services:
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mynewdb
     ports:
-      - 5432:5432
+      - 5555:5432

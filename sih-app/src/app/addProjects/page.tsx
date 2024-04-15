@@ -1,6 +1,5 @@
 "use client";
-import './addprojects.css'
-import prisma from '../lib/connect';
+
 import React, { useState } from 'react';
 
 

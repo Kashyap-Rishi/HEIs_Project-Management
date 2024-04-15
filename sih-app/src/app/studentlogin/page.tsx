@@ -1,90 +1,123 @@
 "use client";
-import Link from 'next/link';
-import React, { useState } from 'react';
-import {signIn,useSession} from 'next-auth/react';
+// Login.jsx
 
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useFormik } from "formik";
+import axios from "axios";
+import * as Yup from "yup";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Snackbar,
+} from "@mui/material";
 
+const LoginStudent = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
-import './studlogin.css'
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: Yup.object().shape({
+      username: Yup.string().required("Username is required"),
+      password: Yup.string().required("Password is required"),
+    }),
+    onSubmit: (values) => {
+      axios
+        .post("http://localhost:8000/api/user/login", {
+          username: values.username,
+          password: values.password,
+        })
+        .then((response) => {
+          const { token } = response.data;
+        
+        // Store the token in localStorage
+        localStorage.setItem("token", token);
+        router.push(`/userdashboard/${values.username}/userprojects`)
+          console.log("Login success:", response);
+          
+        })
+        .catch((error) => {
+          console.error("Login failed:", error);
+          setErrorMessage("Invalid username or password");
+        });
+    },
+  });
 
-const StudentLoginPage = () => {
-
-
- 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleUsernameChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit2 = async(e: React.FormEvent<HTMLFormElement>) => {
-   
-    e.preventDefault();
-    const signInData = await signIn('credentials',{
-      username:username,
-      password:password,
-      redirect:false,
-    })
-    if (signInData?.error) {
-      console.error('Error during sign-in:', signInData.error);
-    } else if (signInData?.ok) {
-     
-     const redirectToPage = `userdashboard/${username}/userprojects`
-window.location.href = redirectToPage;
-
-      
-    
-     
-     
-    } 
- 
-    
+  const handleCloseSnackbar = () => {
+    setErrorMessage("");
   };
 
   return (
-    <div className="instlg-main">
-    <div className="login-form">
-    <h2>Student Login</h2>
-      <form onSubmit={handleSubmit2}>
-        <div className="form-group">
-          <label htmlFor="email">Username:</label>
-          <input
-            type="username"
-            id="username"
-            name="username"
-            value={username}
-            onChange={handleUsernameChange2}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange2}
-            required
-          />
-        </div>
-        <button className="inst-btn" type="submit">Login</button>
+    <Container
+      maxWidth="sm"
+      sx={{
+        mt: 8,
+        p: 4,
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+      }}
+    >
+      <Typography variant="h4" align="center" gutterBottom>
+        Login
+      </Typography>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          label="Username"
+          name="username"
+          value={formik.values.username}
+          onChange={formik.handleChange}
+          error={formik.touched.username && Boolean(formik.errors.username)}
+          helperText={formik.touched.username && formik.errors.username}
+          sx={{ mt: 2 }}
+        />
+        <TextField
+          fullWidth
+          label="Password"
+          type="password"
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          sx={{ mt: 2 }}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ mt: 4 }}
+        >
+          Login
+        </Button>
       </form>
-      <p>
-        Don't have an account?{' '}
-        <Link className="sg-direct" href="studentsignup">
-          Sign up
-        </Link>
-      </p>
-
-    </div>
-    </div>
+      <Snackbar
+        open={!!errorMessage} 
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={errorMessage}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      />
+      <Typography variant="body1" align="center" sx={{ mt: 2 }}>
+        Don't have an account?{" "}
+        <Button
+          color="primary"
+          onClick={() => router.push('/studentsignup')}
+          style={{ textTransform: 'none' }}
+        >
+          Sign Up
+        </Button>
+      </Typography>
+    </Container>
   );
 };
 
-export default StudentLoginPage;
+export default LoginStudent;
