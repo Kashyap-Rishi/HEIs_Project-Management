@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
 console.log("studentcalled");
         try {
 
-          const existingStudent = await connect.userrandom.findUnique({
+          const existingStudent = await connect.user.findUnique({
             where: { username: credentials2?.username }
           });
 

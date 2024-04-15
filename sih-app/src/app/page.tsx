@@ -1,9 +1,12 @@
+import NavBar from "@/components/Navbar/Navbar";
 import Recommendation from "@/components/Recommendation/Recommendation";
 import "./globals.css"
 import styles from "./home.module.css"
-import Image from 'next/image'
+
 const Home=()=> {
   return (
+    <>
+    <NavBar/>
     <div className={styles.grandparent}>
         <div className={styles.chatbotimageparent}>
         
@@ -59,6 +62,7 @@ const Home=()=> {
         
         <Recommendation/>
     </div>
+    </>
   )
 }
 export default Home;
