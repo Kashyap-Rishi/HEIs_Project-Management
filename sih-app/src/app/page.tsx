@@ -1,68 +1,177 @@
+"use client";
 import NavBar from "@/components/Navbar/Navbar";
 import Recommendation from "@/components/Recommendation/Recommendation";
 import "./globals.css"
-import styles from "./home.module.css"
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Autocomplete, Grid } from '@mui/material';
+import { Search as SearchIcon } from '@mui/icons-material';
+import MainProjectCard from "@/components/MainProjectCard/MainProjectCard";
 
-const Home=()=> {
+
+interface Project {
+  projectDetailsCode: string;
+  title: string;
+  description: string;
+  teamMembers: string[];
+  date: string;
+  createTime:string
+  likes: string;
+  bookmarks: string;
+  citations: string;
+  statusproject: string;
+  statusBackgroundColor: string;
+}
+
+const Home = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
+  const [category, setCategory] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [course, setCourse] = useState('');
+
+  const formatDate = (isoDateString: string) => {
+    const date = new Date(isoDateString);
+    return date.toLocaleDateString(); // Converts to local date string, or use .toLocaleDateString('en-US') for a specific locale
+  };
+
+
+  // Fetch projects from API on component mount
+  useEffect(() => {
+    // Replace 'API_ENDPOINT' with your actual API endpoint
+    fetch(`http://localhost:8000/api/project/allProjects`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setProjects(data.fetchedProjects);
+        setFilteredProjects(data.fetchedProjects); // Initialize filteredProjects with all projects
+      })
+      .catch(error => console.error('Error fetching projects:', error));
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery) {  // Only filter if there is a search query
+      let filteredResults = projects.filter(project => {
+        const matchesSearchQuery = project.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = category ? project.category === category : true;
+        const matchesInstitution = institution ? project.institution === institution : true;
+        const matchesCourse = course ? project.course === course : true;
+  
+        return matchesSearchQuery && matchesCategory && matchesInstitution && matchesCourse;
+      });
+  
+      setFilteredProjects(filteredResults);
+    } else {
+      setFilteredProjects([]);  // Clear the filtered results when search query is empty
+    }
+  }, [searchQuery, category, institution, course, projects]);
+  
+
+  const handleSearch = () => {
+    // You can perform additional search operations if needed
+    console.log('Search query:', searchQuery);
+    console.log('Category:', category);
+    console.log('Institution:', institution);
+    console.log('Course:', course);
+    console.log('Filtered projects:', filteredProjects);
+  };
+
   return (
     <>
     <NavBar/>
-    <div className={styles.grandparent}>
-        <div className={styles.chatbotimageparent}>
-        
-        <img src="images/chatbot.png" className="scale-100 hover:scale-110 ease-in duration-200 cursor-pointer"></img>
-        </div>
-
-        <form className="flex justify-center gap-3 align-middle">
-            <input className={styles.search_bar} placeholder="Search Your Project"></input>
-            <img className={styles.searchimg}src="images/search.png" width="40px" height="10px"></img>
-
-        </form>
-        <div className={styles.filters_parent}>
-            <div className="flex  mb-4">
-                <div className="mr-3 font-semibold">Year Range:</div>
-                <div className="flex gap-3 ml-20">
-                <input className="w-12 rounded"></input>
-                <div>-</div>
-                <input className="w-12 rounded"></input>
-                </div>
-            </div>
-            <div className="flex mb-4">
-              <div className="pr-20 font-semibold">College:</div>
-              <input className="rounded w-8/12 ml-10 h-8" placeholder="  College Name"></input>
-            </div>
-            <div className="flex mb-4">
-              <div className="pr-3 font-semibold">Subject Heading:</div>
-              <input className="rounded w-8/12 ml-10 h-8" placeholder="  Subject Name"></input>
-            </div>
-            <div className="flex mb-4">
-              <div className="pr-20 mr-1 font-semibold">Author:</div>
-              <input className="rounded w-8/12 ml-10 h-8" placeholder="  Author Name"></input>
-            </div>
-            <div>
-              <div className="mb-4 font-semibold">Sort :-</div>
-              <div className="flex gap-10">
-                    <div className="flex justify-center align-middle gap-2">
-                      <div><input type="radio" className={styles.radio}></input></div>
-                    <div className="font-semibold">Likes</div>
-                    </div>
-                    <div className="flex justify-center align-middle gap-2">
-                      <div><input type="radio" className={styles.radio}></input></div>
-                    <div className="font-semibold">Bookmarks</div>
-                    </div>
-                    <div className="flex justify-center align-center gap-2">
-                      <div><input type="radio" className={styles.radio}></input></div>
-                    <div className="font-semibold">Citation</div>
-                    </div>
-                    
-              </div>
-            </div>
-
-        </div>
-        
-        <Recommendation/>
-    </div>
+    <Grid container spacing={2} justifyContent="center" alignItems="center"
+    paddingTop="30px">
+      <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
+        <Autocomplete
+          fullWidth
+          freeSolo
+          disableClearable
+          options={projects.map((project) => project.title)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search projects"
+              variant="outlined"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              InputProps={{ ...params.InputProps, type: 'search' }}
+              sx={{ display:'inline-block' }}
+            />
+          )}
+        />
+        <Button
+          
+          color="primary"
+          startIcon={<SearchIcon />}
+          onClick={handleSearch}
+          sx={{ borderRadius: '8px', height: '100%', ml: 1,marginTop:'10px' }}
+        >
+          Search
+        </Button>
+      </Grid>
+      <Grid item xs={12} sx={{ textAlign: 'center', mt: 2 }}>
+        <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="category-label">Tech Stacks</InputLabel>
+          <Select
+            labelId="category-label"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            label="Category"
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="Category1">Category1</MenuItem>
+            <MenuItem value="Category2">Category2</MenuItem>
+            {/* Add more categories as needed */}
+          </Select>
+        </FormControl>
+        <FormControl sx={{ minWidth: 200, ml: 2 }}>
+          <InputLabel id="institution-label">Institution</InputLabel>
+          <Select
+            labelId="institution-label"
+            value={institution}
+            onChange={(e) => setInstitution(e.target.value)}
+            label="Institution"
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="Institution1">Institution1</MenuItem>
+            <MenuItem value="Institution2">Institution2</MenuItem>
+            {/* Add more institutions as needed */}
+          </Select>
+        </FormControl>
+        <FormControl sx={{ minWidth: 200, ml: 2 }}>
+          <InputLabel id="course-label">Course</InputLabel>
+          <Select
+            labelId="course-label"
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+            label="Course"
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="Course1">Course1</MenuItem>
+            <MenuItem value="Course2">Course2</MenuItem>
+            {/* Add more courses as needed */}
+          </Select>
+        </FormControl>
+      </Grid>
+      {/* Render filtered projects */}
+      {filteredProjects.map(project => (
+        <Grid item xs={10} >
+          
+         <MainProjectCard
+         id={project.projectDetailsCode}
+         title={project.title}
+         description={project.description} // Make sure the property names match what's in your data
+         teamMembers={project.teamMembers} // Ensure these links are provided in your data or handled as optional
+         
+         date={formatDate(project.createTime)}
+         likes="3"
+         bookmarks="9"
+         citations="10" />
+        </Grid>
+      ))}
+    </Grid>
+    <Recommendation/>
     </>
-  )
-}
+  );
+};
+
 export default Home;

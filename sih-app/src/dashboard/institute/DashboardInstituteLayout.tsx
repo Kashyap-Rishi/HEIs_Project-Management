@@ -1,3 +1,4 @@
+// components/DashboardLayout.tsx
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -14,7 +15,7 @@ interface DashboardLayoutProps {
   username: string;
 }
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, username }) => {
+const DashboardInstituteLayout: React.FC<DashboardLayoutProps> = ({ children, username }) => {
   const router = useRouter();
 
   const navigateTo = (path: string) => {
@@ -31,7 +32,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, username })
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar sx={{justifyContent:'space-between'}}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" noWrap>
             Dashboard
           </Typography>
@@ -49,22 +50,30 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, username })
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: drawerWidth },
+          '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
         <Toolbar />
         <List>
-          <ListItem button onClick={() => navigateTo(`/professordashboard/${username}`)}>
+          <ListItem button onClick={() => navigateTo(`/institutedashboard/${username}`)}>
             <ListItemIcon><DashboardIcon /></ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button onClick={() => navigateTo(`/professordashboard/${username}/profile`)}>
+          <ListItem button onClick={() => navigateTo(`/institutedashboard/${username}/profile`)}>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => navigateTo(`/professordashboard/${username}/courses`)}>
+          <ListItem button onClick={() => navigateTo(`/institutedashboard/${username}/courses`)}>
             <ListItemIcon><SchoolIcon /></ListItemIcon>
             <ListItemText primary="Courses" />
+          </ListItem>
+          <ListItem button onClick={() => navigateTo(`/institutedashboard/${username}/professors`)}>
+            <ListItemIcon><SchoolIcon /></ListItemIcon>
+            <ListItemText primary="Professors" />
+          </ListItem>
+          <ListItem button onClick={() => navigateTo(`/institutedashboard/${username}/students`)}>
+            <ListItemIcon><SchoolIcon /></ListItemIcon>
+            <ListItemText primary="Students" />
           </ListItem>
         </List>
       </Drawer>
@@ -76,4 +85,4 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, username })
   );
 };
 
-export default DashboardLayout;
+export default DashboardInstituteLayout;

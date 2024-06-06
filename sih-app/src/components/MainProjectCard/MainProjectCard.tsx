@@ -5,22 +5,21 @@ import { useRouter } from 'next/navigation';
 
 interface Props {
   id: string;
-  name: string;
+  title: string;
   description: string;
   teamMembers: string[];
   date: string;
   likes: string;
   bookmarks: string;
   citations: string;
-  statusproject: string;
-  statusBackgroundColor: string;
+
 }
 
-const ProjCardSI = (props: Props) => {
+const MainProjectCard = (props: Props) => {
     const router=useRouter();
   return (
     <Box
-    onClick={()=>{router.push(`/projects/${props.id}/${props.statusproject}`)}}
+    onClick={()=>{router.push(`/projects/${props.id}/view`)}}
       sx={{
         boxShadow: '0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)',
         border: '1px solid #dedddd',
@@ -36,24 +35,12 @@ const ProjCardSI = (props: Props) => {
         <Typography variant="h5" sx={{ fontWeight: 'bold',fontSize: '1.5rem',paddingBottom:'10px',color: 'black' }}> {/* Increased size and made bold */}
          
 
-              {props.name}
+              {props.title}
            
         
         </Typography>
 
-        {props.statusproject && (
-          <Box
-            sx={{
-              backgroundColor: props.statusBackgroundColor || 'transparent',
-              borderRadius: '20px',
-              px: 2,
-              py: 0.5,
-          
-            }}
-          >
-            <Typography sx={{    fontSize: '1rem'}} variant="caption">{props.statusproject}</Typography>
-          </Box>
-        )}
+
       </Box>
       
       <Box
@@ -88,7 +75,7 @@ const ProjCardSI = (props: Props) => {
           color:'grey'
         }}
       >
-        <Typography variant="body1">Submitted on {props.date}</Typography>
+        <Typography variant="body1">Published on {props.date}</Typography>
         <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem` }}>{props.likes}</span> Likes</Typography>
         <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem`  }}>{props.bookmarks} </span> Bookmarks</Typography>
         <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem`  }}>{props.citations} </span>Citations </Typography>
@@ -97,5 +84,5 @@ const ProjCardSI = (props: Props) => {
   );
 }
 
-export default ProjCardSI;
+export default MainProjectCard ;
 

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { format, parse } from 'date-fns';
-
+import { useRouter } from 'next/navigation';
 type Params = {
   params: {
     courseCode: string;
@@ -24,6 +24,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const CourseDetailsPage = ({ params: { courseCode, username } }: Params) => {
+const router=useRouter();
+
+const handleProjectBoxClick = (projectCode:String) => {
+  const projectVerifiedUrl = `/professordashboard/${username}/courses/${courseCode}/${projectCode}/unverified`;
+  router.push(projectVerifiedUrl);
+};
 
   
   const convertToISOFormat = (inputDate: string) => {
@@ -78,8 +84,15 @@ const CourseDetailsPage = ({ params: { courseCode, username } }: Params) => {
                 <Typography variant="h6" gutterBottom mt={3}>Assigned Projects:</Typography>
                 <Grid container spacing={2}>
                   {course.projectTopics.map((project: any, index: number) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                      <Card>
+                    <Grid item xs={12} sm={6} md={4} key={index} onClick={() => handleProjectBoxClick(project.projectCode)}
+                                    
+                    >
+                      <Card sx={{
+                      '&:hover': {
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1), 0 0 4px rgba(0, 0, 0, 0.1)', // Add slight shadow on hover
+                      },
+                    }}  >
                         <CardContent>
                           <Typography variant="h6" gutterBottom>{project.projectTitle}</Typography>
                           <Typography variant="body2" color="textSecondary">Deadline: {new Date(project.deadline).toDateString()}</Typography>

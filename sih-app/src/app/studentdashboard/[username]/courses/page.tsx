@@ -2,19 +2,11 @@
 
 
 import { CircularProgress, Typography, Grid, Paper, Divider, ListItem, ListItemText, List, Button, Box, Link } from '@mui/material';
-import { DataContext } from '@/context/data/professor/ProfessorContext';
-import LayoutWrapper from '@/dashboard/professor/DashboardPage';
-import React, { useContext } from 'react';
-import { ProfessorDataProvider } from '@/context/data/professor/ProfessorContext'; 
+import LayoutWrapper from '@/dashboard/student/DashboardStudentPage';
+import { StudentDataProvider,StudentDataContext } from '@/context/data/student/StudentContext'; 
 import { useRouter } from 'next/navigation';
 
 
-// const isLoggedIn = useAuth();
-// const navigate = useNavigate();
-// if (!isLoggedIn) {
-//   navigate('/login');
- 
-// }
 type Params = {
   params: {
     username: string;
@@ -25,25 +17,25 @@ const CoursePage = ({ params: { username } }: Params) => {
   const router = useRouter();
 
   const handleViewCourse = (courseCode: string) => {
-    router.push(`/professordashboard/${username}/courses/${courseCode}`);
+    router.push(`/studentdashboard/${username}/courses/${courseCode}`);
   };
 
   return (
-    <ProfessorDataProvider username={username}>
-      <DataContext.Consumer>
+    <StudentDataProvider username={username}>
+      <StudentDataContext.Consumer>
         {(dataContextValue) => {
           const { data } = dataContextValue;
           if (!data) {
             return <CircularProgress />;
           }
-
-          const { professor } = data;
-          const { courses } = professor;
+console.log(data);
+          const { student } = data;
+          const { courses } = student;
 
           return (
             <LayoutWrapper username={username}>
               <Paper elevation={3} sx={{ padding: 3, marginBottom: 3 }}>
-                <Typography variant="h4" gutterBottom>Courses</Typography>
+                <Typography variant="h4" gutterBottom>Enrolled Courses</Typography>
                 <Divider />
                 <Grid container spacing={2}>
                   {courses.map((course:any, index:number) => (
@@ -68,8 +60,8 @@ const CoursePage = ({ params: { username } }: Params) => {
             </LayoutWrapper>
           );
         }}
-      </DataContext.Consumer>
-    </ProfessorDataProvider>
+      </StudentDataContext.Consumer>
+    </StudentDataProvider>
   );
 };
 

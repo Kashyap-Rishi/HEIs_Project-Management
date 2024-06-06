@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { CircularProgress, Typography, Grid, Paper, Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { DataContext } from '@/context/data/professor/ProfessorContext';
-import LayoutWrapper from '@/dashboard/professor/DashboardPage';
-import { ProfessorDataProvider } from '@/context/data/professor/ProfessorContext';
+import LayoutWrapper from '@/dashboard/student/DashboardStudentPage';
+import { StudentDataProvider, StudentDataContext } from '@/context/data/student/StudentContext';
 
 type Params = {
   params: {
@@ -12,18 +11,18 @@ type Params = {
   };
 };
 
-const ProfilePage = ({ params: { username } }: Params) => {
+const StudentProfilePage = ({ params: { username } }: Params) => {
   return (
-    <ProfessorDataProvider username={username}>
-      <DataContext.Consumer>
+    <StudentDataProvider username={username}>
+      <StudentDataContext.Consumer>
         {(dataContextValue) => {
           const { data } = dataContextValue;
           if (!data) {
             return <CircularProgress />;
           }
 
-          const { professor } = data;
-          const { firstName, lastName, email, phoneNumber, professorRollNo, courses } = professor;
+          const { student } = data;
+          const { firstName, lastName, email, phoneNumber, studentRollNo, courses } = student;
 
           return (
             <LayoutWrapper username={username}>
@@ -53,8 +52,8 @@ const ProfilePage = ({ params: { username } }: Params) => {
                             <TableCell>{phoneNumber}</TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell component="th" scope="row">Professor Roll No:</TableCell>
-                            <TableCell>{professorRollNo}</TableCell>
+                            <TableCell component="th" scope="row">Student Roll No:</TableCell>
+                            <TableCell>{studentRollNo}</TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -90,9 +89,9 @@ const ProfilePage = ({ params: { username } }: Params) => {
             </LayoutWrapper>
           );
         }}
-      </DataContext.Consumer>
-    </ProfessorDataProvider>
+      </StudentDataContext.Consumer>
+    </StudentDataProvider>
   );
 };
 
-export default ProfilePage;
+export default StudentProfilePage;
