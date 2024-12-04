@@ -1,84 +1,101 @@
-import React from 'react'
-import './cardsi.css'
-import Link from 'next/link'
-import { Category } from '@mui/icons-material';
+import React from 'react';
+import Link from 'next/link';
+import { Box, Typography, Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-
-
-
-
-
-
-
-interface props{
-    id:Number,
-    name:String,
-    description:String,
-    link1:String,
-    link2:String,
-    link3:String,
-    date:String,
-    likes:String,
-    bookmarks:String,
-    citations:String,
-    statusproject:String,
-    statusBackgroundColor:string
+interface Props {
+  id: string;
+  name: string;
+  description: string;
+  teamMembers: string[];
+  date: string;
+  likes: string;
+  bookmarks: string;
+  citations: string;
+  statusproject: string;
+  statusBackgroundColor: string;
 }
 
-
-
-
-
-const ProjCardSI = (props:props) => {
-    try{
-    const statusStyle = {
-        backgroundColor: props.statusBackgroundColor || 'transparent', 
-      };
-      
-    
+const ProjCardSI = (props: Props) => {
+    const router=useRouter();
   return (
-    <div className="ProjCardGrandparent2">
-    <div className="projparent2">
-        <div className="poj-head">
-            <div>
-        <h2 >
-           <Link className="inact-link" href={`/projects/[id]/unverified`} as={`/projects/${props.id}/unverified`}> {props.name}</Link>
-        </h2>
-        </div>
+    <Box
+    onClick={()=>{router.push(`/projects/${props.id}/${props.statusproject}`)}}
+      sx={{
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)',
+        border: '1px solid #dedddd',
+        margin: 'auto',
+        padding: 3,
+        borderRadius: 2,
+        mb: 2,
+        cursor:'pointer'
        
-        <div className="status" style={statusStyle}><span>{props.statusproject}</span></div>
-        </div>
-        <div  className="links2">
-           <div><a>{props.link1}</a></div>
-            <div><a>{props.link2}</a></div>
-            <div><a>{props.link3}</a></div>
-        </div>
-        <div className="description2">
-            {props.description}
-        </div>
-        <div  className="datelikesbookmarks2">
-        <div className="date">
-            Published on {props.date}
-        </div>
-        <div className="likes2">
-            <div >{props.likes} Likes</div>
-        </div>
-        <div className="bookmarks2">
-            {props.bookmarks} Bookmarks
-        </div>
-        <div className="citations2">
-            {props.citations} Citations
-        </div>
-        </div>
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h5" sx={{ fontWeight: 'bold',fontSize: '1.5rem',paddingBottom:'10px',color: 'black' }}> {/* Increased size and made bold */}
+         
+
+              {props.name}
+           
         
-    </div>
-</div>
-  )
-}catch(error){
-    console.error(error);
-    console.error("Error loading user data:", error);
-    return <div>Error loading user data</div>;
-  }
+        </Typography>
+
+        {props.statusproject && (
+          <Box
+            sx={{
+              backgroundColor: props.statusBackgroundColor || 'transparent',
+              borderRadius: '20px',
+              px: 2,
+              py: 0.5,
+          
+            }}
+          >
+            <Typography sx={{    fontSize: '1rem'}} variant="caption">{props.statusproject}</Typography>
+          </Box>
+        )}
+      </Box>
+      
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+          mb: 2,
+        }}
+      >
+        {props.teamMembers && props.teamMembers.length > 0 && (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            {props.teamMembers.map((member, index) => (
+              <Typography variant="body1" component="a" key={index} >
+                {member}{index < props.teamMembers.length - 1 && <span style={{ margin: '0 5px' }}>&middot;</span>}
+              </Typography>
+            ))}
+          </Box>
+        )}
+      </Box>
+
+      <Typography variant="body1" sx={{ mb: 2 }}>
+        {props.description}
+      </Typography>
+
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          flexWrap: 'wrap',
+        
+          color:'grey'
+        }}
+      >
+        <Typography variant="body1">Submitted on {props.date}</Typography>
+        <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem` }}>{props.likes}</span> Likes</Typography>
+        <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem`  }}>{props.bookmarks} </span> Bookmarks</Typography>
+        <Typography variant="body1" sx={{ fontWeight: '500' }}><span style={{color:"#000000",fontSize:`1.2rem`  }}>{props.citations} </span>Citations </Typography>
+      </Box>
+    </Box>
+  );
 }
 
-export default ProjCardSI
+export default ProjCardSI;
+

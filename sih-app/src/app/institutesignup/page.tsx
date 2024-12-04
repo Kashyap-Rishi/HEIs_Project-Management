@@ -59,9 +59,13 @@ const SignupInstitute = () => {
             setStep(step + 1);
           })
           .catch((error) => {
-            console.error("Registration failed:", error);
-            setErrorMessage(error.response.data.message);
+            console.log("Error response:", error.response);
+            const errorMessage =
+              error.response?.data?.message || "An unexpected error occurred.";
+            console.error("Registration failed:", errorMessage);
+            setErrorMessage(errorMessage);
           });
+          
       } else {
         axios
           .post("http://localhost:8000/api/user/signup", {

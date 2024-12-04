@@ -8,6 +8,13 @@ import React, { useContext } from 'react';
 import { ProfessorDataProvider } from '@/context/data/professor/ProfessorContext'; 
 import { useRouter } from 'next/navigation';
 
+
+// const isLoggedIn = useAuth();
+// const navigate = useNavigate();
+// if (!isLoggedIn) {
+//   navigate('/login');
+ 
+// }
 type Params = {
   params: {
     username: string;

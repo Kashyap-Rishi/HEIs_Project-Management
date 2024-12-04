@@ -1,11 +1,11 @@
-// components/DashboardLayout.tsx
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Button } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const drawerWidth = 240;
 
@@ -21,13 +21,27 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, username })
     router.push(path);
   };
 
+  const handleLogout = () => {
+    // Clear token or user data from localStorage or any state management you are using
+    localStorage.removeItem('token');
+    // Redirect to login page or root
+    navigateTo('/');
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
+        <Toolbar sx={{justifyContent:'space-between'}}>
           <Typography variant="h6" noWrap>
             Dashboard
           </Typography>
+          <Button 
+            color="inherit" 
+            startIcon={<ExitToAppIcon />} 
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

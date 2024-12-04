@@ -36,9 +36,8 @@ const LoginStudent = () => {
         .then((response) => {
           const { token } = response.data;
         
-        // Store the token in localStorage
         localStorage.setItem("token", token);
-        router.push(`/userdashboard/${values.username}/userprojects`)
+        router.push(`/studentdashboard/${values.username}`)
           console.log("Login success:", response);
           
         })

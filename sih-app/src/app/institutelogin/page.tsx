@@ -38,7 +38,7 @@ const LoginInstitute = () => {
         
         // Store the token in localStorage
         localStorage.setItem("token", token);
-        router.push('/newpage')
+        router.push(`institutedashboard/${values.username}`)
           console.log("Login success:", response);
           
         })

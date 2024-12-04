@@ -1,10 +1,10 @@
 "use client";
 
-import { CircularProgress, Typography, Grid, Paper, Divider, ListItem, ListItemText, List } from '@mui/material';
+import React from 'react';
+import { CircularProgress, Typography, Grid, Paper, Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { DataContext } from '@/context/data/professor/ProfessorContext';
 import LayoutWrapper from '@/dashboard/professor/DashboardPage';
-import React, { useContext } from 'react';
-import { ProfessorDataProvider } from '@/context/data/professor/ProfessorContext'; 
+import { ProfessorDataProvider } from '@/context/data/professor/ProfessorContext';
 
 type Params = {
   params: {
@@ -21,7 +21,7 @@ const ProfilePage = ({ params: { username } }: Params) => {
           if (!data) {
             return <CircularProgress />;
           }
-console.log(data);
+
           const { professor } = data;
           const { firstName, lastName, email, phoneNumber, professorRollNo, courses } = professor;
 
@@ -33,36 +33,57 @@ console.log(data);
                 <Grid container spacing={3} mt={3}>
                   <Grid item xs={12} md={6}>
                     <Typography variant="h6" gutterBottom>Personal Information:</Typography>
-                    <List>
-                      <ListItem disablePadding>
-                        <ListItemText primary={`First Name: ${firstName}`} />
-                      </ListItem>
-                      <ListItem disablePadding>
-                        <ListItemText primary={`Last Name: ${lastName}`} />
-                      </ListItem>
-                      <ListItem disablePadding>
-                        <ListItemText primary={`Email: ${email}`} />
-                      </ListItem>
-                      <ListItem disablePadding>
-                        <ListItemText primary={`Phone Number: ${phoneNumber}`} />
-                      </ListItem>
-                      <ListItem disablePadding>
-                        <ListItemText primary={`Professor Roll No: ${professorRollNo}`} />
-                      </ListItem>
-                    </List>
+                    <TableContainer component={Paper}>
+                      <Table>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell component="th" scope="row">First Name:</TableCell>
+                            <TableCell>{firstName}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell component="th" scope="row">Last Name:</TableCell>
+                            <TableCell>{lastName}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell component="th" scope="row">Email:</TableCell>
+                            <TableCell>{email}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell component="th" scope="row">Phone Number:</TableCell>
+                            <TableCell>{phoneNumber}</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell component="th" scope="row">Professor Roll No:</TableCell>
+                            <TableCell>{professorRollNo}</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Typography variant="h6" gutterBottom>Courses Enrolled:</Typography>
-                    <List>
-                      {courses.map((course:any, index:number) => (
-                        <ListItem key={index} disablePadding>
-                          <ListItemText primary={`Course ${index + 1}: ${course.name}`} />
-                        </ListItem>
-                      ))}
-                      <ListItem disablePadding>
-                        <ListItemText primary={`Total Courses: ${courses.length}`} />
-                      </ListItem>
-                    </List>
+                    <TableContainer component={Paper}>
+                      <Table>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>#</TableCell>
+                            <TableCell>Course Name</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {courses.map((course: any, index: number) => (
+                            <TableRow key={index}>
+                              <TableCell>{index + 1}</TableCell>
+                              <TableCell>{course.name}</TableCell>
+                            </TableRow>
+                          ))}
+                          <TableRow>
+                            <TableCell>Total Courses:</TableCell>
+                            <TableCell>{courses.length}</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
                   </Grid>
                 </Grid>
               </Paper>
